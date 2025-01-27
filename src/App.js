@@ -6,6 +6,7 @@ import AddJob from './Admin/AddJob';
 import Dashboard from './Admin/Dashboard';
 import './App.css';
 import LoginPage from './Admin/LoginPage';
+
 //import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <AddJob/>
     <LoginPage/>
     
-
+  
 
   
     </div>

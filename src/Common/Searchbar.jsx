@@ -1,65 +1,45 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import SearchIcon from "@mui/icons-material/Search";
-import { Box } from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import { TextField, Autocomplete } from '@mui/material'; // Import from @mui/material
 
-const RoundedSearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
+const Searchbar = () => {
+  const [myOptions, setMyOptions] = useState([]);
+  const [query, setQuery] = useState('');
 
-  const handleSearch = (event) => {
-    setQuery(event.target.value);
-    if (onSearch) {
-      onSearch(event.target.value);
+  // Fetch data from API and update options
+  useEffect(() => {
+    if (query.length > 2) { // Only fetch if query has more than 2 characters
+      const fetchData = async () => {
+        console.log("Options Fetched from API");
+        const response = await fetch('');
+        const data = await response.json();
+        if (data && data.data) {
+          const employeeNames = data.data.map(employee => employee.employee_name);
+          setMyOptions(employeeNames);
+        }
+      };
+      fetchData();
     }
-  };
+  }, [query]); // This effect runs when `query` changes
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-    >
-      <TextField
-        label="Search"
-        variant="outlined"
-        value={query}
-        onChange={handleSearch}
-        size="small" // Small size
-        sx={{
-          width: "300px", // Compact width
-          backgroundColor: "#FFE5D4", // Light orange background
-          borderRadius: "25px", // Rounded shape
-          "& .MuiOutlinedInput-root": {
-            borderRadius: "25px", // Rounded shape for input field
-            "& fieldset": {
-              borderColor: "#FFB799", // Light orange border
-            },
-            "&:hover fieldset": {
-              borderColor: "#FFA482", // Slightly darker orange on hover
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "#FF8A50", // Darker orange on focus
-            },
-          },
-          "& .MuiInputLabel-root": {
-            color: "#FF7043", // Light orange label text
-          },
-          "& .MuiOutlinedInput-input": {
-            color: "#FF7043", // Light orange input text
-          },
-        }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon sx={{ color: "#FF7043" }} /> {/* Light orange icon */}
-            </InputAdornment>
-          ),
-        }}
+    <div style={{ marginLeft: '40%', marginTop: '60px' }}>
+      <Autocomplete
+        style={{ width: 500 }}
+        freeSolo
+        autoComplete
+        autoHighlight
+        options={myOptions}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            onChange={(e) => setQuery(e.target.value)} // Update query state when input changes
+            variant="outlined"
+            label="Search Box"
+          />
+        )}
       />
-    </Box>
+    </div>
   );
 };
 
-export default RoundedSearchBar;
+export default Searchbar;

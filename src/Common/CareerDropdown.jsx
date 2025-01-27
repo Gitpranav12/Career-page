@@ -33,8 +33,13 @@ const CareerDropdown = () => {
           cursor: pointer;
         }
 
-        .career-btn:hover {
-          background-color: #FF8C00; /* Darker orange for hover */
+        .career-btn:hover:after{
+          background-color: #FFA500; /* Light orange color */
+          color: white;
+          padding: 10px 20px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
         }
 
         .dropdown-content {

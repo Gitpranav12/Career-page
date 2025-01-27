@@ -5,8 +5,12 @@
  //import AddInternship from './Admin/AddInternship';
 //import Dashboard from './Admin/Dashboard';
 import './App.css';
-import InternshipCard from './Frontend/Internship/InternshipCard';
+
+//import InternshipCard from './Frontend/Internship/InternshipCard';
 //import LoginPage from './Admin/LoginPage';
+
+//import LoginPage from './Admin/LoginPage';
+n
 //import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 //import Intenrships from './Pages/Intenrships';
 //import ManageApplicationJob from './Admin/ManageApplicationJob';
@@ -15,7 +19,7 @@ import InternshipCard from './Frontend/Internship/InternshipCard';
 function App() {
   return (
     <div>
-<InternshipCard/>
+hi
     </div>
   );
 }

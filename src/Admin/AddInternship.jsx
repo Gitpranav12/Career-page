@@ -39,10 +39,16 @@ const AddInternship = () => {
             { id: "Stipend", label: "Stipend", type: "text" },
             { id: "Location", label: "Location", type: "text" },
             { id: "Posted_Date", label: "Posted Date", type: "date" },
-            { id: "Application_Deadline", label: "Application Deadline", type: "date" },
+            {
+              id: "Application_Deadline",
+              label: "Application Deadline",
+              type: "date",
+            },
           ].map(({ id, label, type }) => (
             <div key={id} style={styles.formGroup}>
-              <label htmlFor={id} style={styles.label}>{label}</label>
+              <label htmlFor={id} style={styles.label}>
+                {label}
+              </label>
               {type === "textarea" ? (
                 <textarea
                   id={id}

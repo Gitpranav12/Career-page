@@ -4,15 +4,13 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for progra
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const navigate = useNavigate(); // useNavigate hook to navigate programmatically
 
   // Handle the login button click
   const handleLogin = (e) => {
     e.preventDefault(); // Prevent form submission (for now, you can add validation logic here)
-    
-    // After clicking the "Login" button, navigate to the Home page
-    navigate("/dashboard");
+    navigate("/dashboard"); // After clicking the "Login" button, navigate to the Home page
   };
 
   const styles = {
@@ -125,12 +123,14 @@ const LoginPage = () => {
         </h3>
       </div>
       <div style={styles.login}>
-        <form style={styles.form} onSubmit={handleLogin}> {/* Added onSubmit to handle login */}
+        <form style={styles.form} onSubmit={handleLogin}>
+          {" "}
+          {/* Added onSubmit to handle login */}
           <h3 style={styles.heading}>Admin Login</h3>
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Username"
             style={styles.input}
             value={email} // Bind value to state
             onChange={(e) => setEmail(e.target.value)} // Handle input change

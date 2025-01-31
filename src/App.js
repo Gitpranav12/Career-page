@@ -10,7 +10,7 @@ import './App.css';
 //import LoginPage from './Admin/LoginPage';
 
 //import LoginPage from './Admin/LoginPage';
-n
+
 //import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 //import Intenrships from './Pages/Intenrships';
 //import ManageApplicationJob from './Admin/ManageApplicationJob';

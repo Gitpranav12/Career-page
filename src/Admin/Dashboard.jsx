@@ -1,7 +1,21 @@
-
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  // Handle the Addinternship form
+  const AddInternship = (e) => {
+    e.preventDefault();
+    navigate("/addinternship"); // After clicking the "AddInternship" button, navigate to the AddInternship form
+  };
+
+  // Handle the Addinternship form
+  const AddJob = (e) => {
+    e.preventDefault();
+    navigate("/addjob"); // After clicking the "AddJob" button, navigate to the AddJob Form
+  };
+
   return (
     <div>
       <style>
@@ -222,15 +236,24 @@ const Dashboard = () => {
         <div className="card">
           <div className="content">
             <h2 className="title">Add Internship</h2>
-            <p className="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
-            <button className="btn">ADD</button>
+            <p className="copy">
+              Check out all of these gorgeous mountain trips with beautiful
+              views of, you guessed it, the mountains
+            </p>
+            <button className="btn" onClick={AddInternship}>
+              ADD
+            </button>
           </div>
         </div>
         <div className="card">
           <div className="content">
             <h2 className="title">Add Job</h2>
-            <p className="copy">Plan your next beach trip with these fabulous destinations</p>
-            <button className="btn">ADD</button>
+            <p className="copy">
+              Plan your next beach trip with these fabulous destinations
+            </p>
+            <button className="btn" onClick={AddJob}>
+              ADD
+            </button>
           </div>
         </div>
         <div className="card">

@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate(); // useNavigate hook to navigate programmatically
+
+  // Handle the login button click
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent form submission (for now, you can add validation logic here)
+    navigate("/dashboard"); // After clicking the "Login" button, navigate to the Home page
+  };
+
   const styles = {
     wrapper: {
       display: "grid",
@@ -111,19 +123,27 @@ const LoginPage = () => {
         </h3>
       </div>
       <div style={styles.login}>
-        <form style={styles.form}>
+        <form style={styles.form} onSubmit={handleLogin}>
+          {" "}
+          {/* Added onSubmit to handle login */}
           <h3 style={styles.heading}>Admin Login</h3>
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Username"
             style={styles.input}
+            value={email} // Bind value to state
+            onChange={(e) => setEmail(e.target.value)} // Handle input change
+            required
           />
           <input
             type="password"
             name="password"
             placeholder="Password"
             style={styles.input}
+            value={password} // Bind value to state
+            onChange={(e) => setPassword(e.target.value)} // Handle input change
+            required
           />
           <div style={styles.checkboxContainer}>
             <label style={styles.checkboxLabel}>
@@ -132,7 +152,7 @@ const LoginPage = () => {
               <div style={styles.checkboxIndicator}></div>
             </label>
             <div style={styles.forgot}>
-              <a href="#" style={{ color: styles.forgot.color }}>
+              <a href="/" style={{ color: styles.forgot.color }}>
                 Forgot Password?
               </a>
             </div>
@@ -141,13 +161,13 @@ const LoginPage = () => {
             Login
           </button>
           <div style={styles.socialLinks}>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-facebook-square" aria-hidden="true"></i>
             </a>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-twitter-square" aria-hidden="true"></i>
             </a>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-linkedin-square" aria-hidden="true"></i>
             </a>
           </div>

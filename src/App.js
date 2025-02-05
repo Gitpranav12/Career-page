@@ -5,7 +5,7 @@ import AddJob from "./Admin/AddJob";
 import AddInternship from "./Admin/AddInternship";
 import Dashboard from "./Admin/Dashboard";
 import "./App.css";
-
+import Navbar from "./Components/navbar";
 //import InternshipCard from './Frontend/Internship/InternshipCard';
 import LoginPage from "./Admin/LoginPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -19,6 +19,7 @@ function App() {
   return (
     <>
       <Router>
+        <Navbar/>
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

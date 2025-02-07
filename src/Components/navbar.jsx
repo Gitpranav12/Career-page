@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "./logooo.png"; // ✅ Import your logo
+import logo from "./logooo.png"; 
 
 
 const Navbar = () => {

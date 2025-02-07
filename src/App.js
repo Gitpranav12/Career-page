@@ -6,9 +6,10 @@ import AddInternship from "./Admin/AddInternship";
 import Dashboard from "./Admin/Dashboard";
 import "./App.css";
 import Navbar from "./Components/navbar";
+import AdminNavbar from "./Components/AdminNavbar";
 //import InternshipCard from './Frontend/Internship/InternshipCard';
 import LoginPage from "./Admin/LoginPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 //import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 //import Intenrships from './Pages/Intenrships';
@@ -19,7 +20,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar/>
+      <ConditionalNavbar />
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -30,5 +31,24 @@ function App() {
     </>
   );
 }
+
+// const ConditionalNavbar = () => {
+//   const location = useLocation();
+//   return location.pathname === "/" ? <Navbar /> : null;
+// };
+
+const ConditionalNavbar = () => {
+  const location = useLocation();
+  console.log("Current Path:", location.pathname); // Debugging output
+
+  if (location.pathname === "/") {
+    return <Navbar />; // Show Home Navbar
+  } else if (location.pathname.startsWith("/dashboard")) {
+    return <AdminNavbar />; // Show Admin Navbar for all dashboard pages
+  }
+
+  return null; // No Navbar for other pages
+};
+
 
 export default App;

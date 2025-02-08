@@ -19,6 +19,7 @@ function App() {
     <>
       <Router>     
         <Routes>
+
           <Route path="/internshipcard" element={<InternshipCard />} />
           <Route path="/apply" element={<InternshipApplicationForm />} />
           <Route path="/" element={<LoginPage />} />

@@ -1,0 +1,64 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "./logooo.png";
+
+const AdminNavbar = () => {
+  const navbarStyle = {
+    backgroundColor: "white", // Tailwind's blue-600
+    color: "black",
+    padding: "5px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
+
+  const logoStyle = {
+    width: "auto", // Decreased size for a smaller logo
+    height: "70px", // Adjust height to maintain proportions
+    objectFit: "contain", // Ensures the image scales properly
+  };
+
+  const headlineStyle = {
+    fontSize: "2 rem",
+    fontWeight: "600",
+    fontFamily: "'Times New Roman', Times, serif",
+    fontStyle: "italic",
+  };
+
+  const logoutButtonStyle = {
+    backgroundColor: "#ef4444", // Tailwind's red-500
+    padding: "8px 16px",
+    borderRadius: "6px",
+    textDecoration: "none",
+    color: "white",
+    transition: "background-color 0.3s ease-in-out",
+  };
+
+  const logoutButtonHoverStyle = {
+    backgroundColor: "#b91c1c", // Tailwind's red-700
+  };
+
+  return (
+    <nav style={navbarStyle}>
+      {/* Logo */}
+      <div>
+        <img src={logo} alt="Logo" style={logoStyle} />
+      </div>
+
+      {/* Headline */}
+      <h1 style={headlineStyle}>Welcome Admin</h1>
+
+      {/* Logout Button */}
+      <Link
+        to="/"
+        style={logoutButtonStyle}
+        onMouseEnter={(e) => (e.target.style.backgroundColor = logoutButtonHoverStyle.backgroundColor)}
+        onMouseLeave={(e) => (e.target.style.backgroundColor = logoutButtonStyle.backgroundColor)}
+      >
+        Logout
+      </Link>
+    </nav>
+  );
+};
+
+export default AdminNavbar;

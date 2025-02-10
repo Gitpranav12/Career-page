@@ -8,7 +8,7 @@ import "./App.css";
 import InternshipCard from './Frontend/Internship/InternshipCard';
 import LoginPage from "./Admin/LoginPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+//app.js
 import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 //import Intenrships from './Pages/Intenrships';
 //import ManageApplicationJob from './Admin/ManageApplicationJob';

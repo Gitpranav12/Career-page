@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar"; //
+// import Navbar from "../Components/navbar"; //
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../Components/AdminNavbar"; 
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ const Dashboard = () => {
   return (
     <>
       {/* Navbar is now inside the return statement */}
-      <Navbar /> 
+      <AdminNavbar />
       <div style={styles.body}>
         {cards.map((card, index) => (
           <div

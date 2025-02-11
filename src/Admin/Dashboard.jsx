@@ -1,19 +1,21 @@
 import React, { useState } from "react";
+import Navbar from "../Components/Navbar"; //
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [hoverIndex, setHoverIndex] = useState(null);
 
-  // Handle the AddInternship form
-  const AddInternship = (e) => {
+  // Handle the Add Internship button click
+  const handleAddInternship = (e) => {
     e.preventDefault();
-    navigate("/addinternship"); // After clicking the "AddInternship" button, navigate to the AddInternship form
+    navigate("/addinternship");
   };
 
-  // Handle the AddJob form
-  const AddJob = (e) => {
+  // Handle the Add Job button click
+  const handleAddJob = (e) => {
     e.preventDefault();
-    navigate("/addjob"); // After clicking the "AddJob" button, navigate to the AddJob form
+    navigate("/addjob");
   };
 
   const styles = {
@@ -33,7 +35,7 @@ const Dashboard = () => {
       backgroundColor: "#fff",
       padding: "1rem",
       borderRadius: "10px",
-      border: "1px solid rgba(255, 94, 0, 0.5)",
+      border: "1px solid rgba(255, 153, 0, 0.69)",
       overflow: "hidden",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
       position: "relative",
@@ -69,66 +71,69 @@ const Dashboard = () => {
       borderRadius: "20px",
       transition: "background-color 0.3s ease",
       cursor: "pointer",
+      border: "none",
     },
     buttonHover: {
       backgroundColor: "#e04e00",
     },
   };
 
-  const [hoverIndex, setHoverIndex] = useState(null);
-
   const cards = [
     {
       img: "/addjob.jpg",
       title: "Add Jobs at KaVaavi",
-      text: "In the modern business landscape, data is one of the most valuable assets...",
+      text: "",
       buttonText: "Add",
-      onClick: AddJob, // Added the onClick handler for the Add Job button
+      onClick: handleAddJob,
     },
     {
       img: "/addinternship.jpg",
       title: "Add Internship at KaVaavi",
-      text: "In today’s fast-paced digital world, businesses need more than just a presence online...",
+      text: "",
       buttonText: "Add",
-      onClick: AddInternship, // Added the onClick handler for the Add Internship button
+      onClick: handleAddInternship,
     },
     {
       img: "/Manage.jpg",
-      title: "Manage Application",
-      text: "Cloud computing provides scalable resources that drive innovation...",
+      title: "Manage Applications",
+      text: "",
       buttonText: "Manage",
-      // You can add an onClick handler for this card if needed
+      onClick: () => navigate("/manageapplicationinternship"),
     },
   ];
 
   return (
-    <div style={styles.body}>
-      {cards.map((card, index) => (
-        <div
-          key={index}
-          style={{
-            ...styles.card,
-            ...(hoverIndex === index ? styles.cardHover : {}),
-          }}
-          onMouseEnter={() => setHoverIndex(index)}
-          onMouseLeave={() => setHoverIndex(null)}
-        >
-          <img src={card.img} alt={card.title} style={styles.img} />
-          <div style={styles.cardContent}>
-            <h3 style={styles.title}>{card.title}</h3>
-            <p style={styles.text}>{card.text}</p>
-            <button
-              style={styles.button}
-              onClick={card.onClick} // This calls the appropriate handler
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.buttonHover.backgroundColor)}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = styles.button.backgroundColor)}
-            >
-              {card.buttonText}
-            </button>
+    <>
+      {/* Navbar is now inside the return statement */}
+      <Navbar /> 
+      <div style={styles.body}>
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            style={{
+              ...styles.card,
+              ...(hoverIndex === index ? styles.cardHover : {}),
+            }}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            <img src={card.img} alt={card.title} style={styles.img} />
+            <div style={styles.cardContent}>
+              <h3 style={styles.title}>{card.title}</h3>
+              <p style={styles.text}>{card.text}</p>
+              <button
+                style={styles.button}
+                onClick={card.onClick}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.buttonHover.backgroundColor)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = styles.button.backgroundColor)}
+              >
+                {card.buttonText}
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

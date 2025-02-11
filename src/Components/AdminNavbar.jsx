@@ -4,7 +4,7 @@ import logo from "./logooo.png";
 
 const AdminNavbar = () => {
   const navbarStyle = {
-    backgroundColor: "white", // Tailwind's blue-600
+    backgroundColor: "white", 
     color: "black",
     padding: "5px",
     display: "flex",
@@ -13,20 +13,24 @@ const AdminNavbar = () => {
   };
 
   const logoStyle = {
-    width: "auto", // Decreased size for a smaller logo
+    width: "auto", 
     height: "70px", // Adjust height to maintain proportions
-    objectFit: "contain", // Ensures the image scales properly
+    objectFit: "contain", 
   };
 
   const headlineStyle = {
-    fontSize: "2 rem",
-    fontWeight: "600",
+    fontSize: "3.5rem", 
+    fontWeight: "800",
     fontFamily: "'Times New Roman', Times, serif",
     fontStyle: "italic",
-  };
+    color: "#d97706",  
+    margin: "0", 
+    padding: "0", 
+};
+
 
   const logoutButtonStyle = {
-    backgroundColor: "#ef4444", // Tailwind's red-500
+    backgroundColor: "#ff5800", // Tailwind  orange
     padding: "8px 16px",
     borderRadius: "6px",
     textDecoration: "none",

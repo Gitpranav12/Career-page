@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
+import { useNavigate } from 'react-router-dom'; // Add this import
 
 const InternshipCard = () => {
   const [activeModal, setActiveModal] = useState(null);
+  const navigate = useNavigate(); 
 
   const openModal = (id) => {
     setActiveModal(id);
@@ -10,6 +11,10 @@ const InternshipCard = () => {
 
   const closeModal = () => {
     setActiveModal(null);
+  };
+
+  const handleApplyClick = () => {
+    navigate("/apply"); // Navigate to the application form
   };
 
   const cardData = [
@@ -114,19 +119,42 @@ const InternshipCard = () => {
             <p>{modal.skills}</p>
             <h2>Number of Openings</h2>
             <p>{modal.openings}</p>
+
+
             <button
-              onClick={closeModal}
+              onClick={handleApplyClick} // Navigate to the application form
               style={{
-                backgroundColor: "#007bff",
+                backgroundColor: "#ff7f00",
                 color: "#fff",
                 border: "none",
                 padding: "10px 20px",
                 borderRadius: "5px",
+                marginRight: "10px",
+                cursor: "pointer",
+              }}
+            >
+              Apply
+            </button>
+
+            <button
+              onClick={closeModal}
+              style={{
+                backgroundColor: "#ff7f00",
+                color: "#fff",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: "5px",
+               
                 cursor: "pointer",
               }}
             >
               Close
             </button>
+
+
+
+
+
           </div>
         </div>
       ))}

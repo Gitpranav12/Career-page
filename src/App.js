@@ -7,6 +7,7 @@ import Dashboard from "./Admin/Dashboard";
 import "./App.css";
 import Navbar from "./Components/navbar";
 import AdminNavbar from "./Components/AdminNavbar";
+import Home from "./Pages/Home";
 //import InternshipCard from './Frontend/Internship/InternshipCard';
 import LoginPage from "./Admin/LoginPage";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
@@ -21,6 +22,7 @@ function App() {
     <>
       <Router>
       <ConditionalNavbar />
+        <Home />
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

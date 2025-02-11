@@ -5,6 +5,7 @@ import logo from "./logooo.png";
 
 
 const Navbar = () => {
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -65,6 +66,7 @@ const Navbar = () => {
         /* Mobile */
         @media (max-width: 768px) {
           .menu-button {
+          
             display: block;
           }
 
@@ -77,6 +79,7 @@ const Navbar = () => {
             background-color: #3182ce;
             flex-direction: column;
             padding: 1rem;
+
             gap: 1rem;
           }
         }

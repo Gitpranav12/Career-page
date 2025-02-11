@@ -33,7 +33,7 @@ const Dashboard = () => {
       backgroundColor: "#fff",
       padding: "1rem",
       borderRadius: "10px",
-      border: "1px solid rgba(255, 94, 0, 0.5)",
+      border: "1px solid rgba(255, 153, 0, 0.69)",
       overflow: "hidden",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
       position: "relative",

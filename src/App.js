@@ -10,12 +10,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Footer from "./Pages/Footer";
 import ManageApplicationInternship from './Admin/ManageApplicationInternship';
 
+
 function App() {
   return (
     <>
       <Router>
       <ConditionalNavbar />
-
+      
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

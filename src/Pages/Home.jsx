@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion";
-import searchImage from "./search.jpg";
-import intership from "./intership.jpg";
-import job from "./job.jpg";
+//import searchImage from "./search.jpg";
+//import intership from "./intership.jpg";
+//import job from "./job.jpg";
 
 export default function Home() {
   const [keywords, setKeywords] = useState("");
 
   const styles = {
     pageContainer: {
-      backgroundImage: `url(${searchImage})`,
+      backgroundImage: `url('/search.jpg')`,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "top",
@@ -159,7 +159,8 @@ export default function Home() {
       {/* Internship & Job Sections */}
       <div style={styles.sectionContainer}>
         <div style={styles.section}>
-          <img src={intership} alt="Internship" style={styles.sectionImage} />
+        <img src="/intership.jpg" alt="Internship" style={styles.sectionImage} />
+        
           <h3 style={styles.sectionTitle}>Internship Opportunities</h3>
           <p style={styles.sectionText}>
             Gain industry experience and boost your skills with various internships. 
@@ -170,7 +171,7 @@ export default function Home() {
           <button style={styles.button}>Explore Internships</button>
         </div>
         <div style={styles.section}>
-          <img src={job} alt="Job" style={styles.sectionImage} />
+        <img src="/job.jpg" alt="Job" style={styles.sectionImage} />
           <h3 style={styles.sectionTitle}>Job Openings</h3>
           <p style={styles.sectionText}>
             Find full-time job opportunities at our company. 

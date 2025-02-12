@@ -21,6 +21,7 @@ function App() {
     <>
       <Router>
       <ConditionalNavbar />
+
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

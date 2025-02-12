@@ -10,7 +10,7 @@ import Navbar from "./Components/navbar";
 //import InternshipCard from './Frontend/Internship/InternshipCard';
 import LoginPage from "./Admin/LoginPage";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-
+//import Home from "./Pages/Home";
 //import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 //import Intenrships from './Pages/Intenrships';
 //import ManageApplicationJob from './Admin/ManageApplicationJob';
@@ -21,7 +21,7 @@ function App() {
     <>
       <Router>
       <ConditionalNavbar />
-
+      
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

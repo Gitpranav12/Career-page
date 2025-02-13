@@ -3,8 +3,8 @@ import AddJob from "./Admin/AddJob";
 import AddInternship from "./Admin/AddInternship";
 import Dashboard from "./Admin/Dashboard";
 import "./App.css";
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
+import Navbar from "./Components/navbar";
+// import Home from "./Pages/Home";
 import LoginPage from "./Admin/LoginPage";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./Pages/Footer";
@@ -18,6 +18,7 @@ function App() {
       <ConditionalNavbar />
       
         <Routes>
+          
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addInternship" element={<AddInternship />} />

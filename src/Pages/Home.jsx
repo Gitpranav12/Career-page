@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 //import searchImage from "./search.jpg";
 //import intership from "./intership.jpg";
 //import job from "./job.jpg";
+import Navbar from "../Components/navbar";
 
 export default function Home() {
   const [keywords, setKeywords] = useState("");
@@ -128,6 +129,7 @@ export default function Home() {
 
   return (
     <div>
+      <Navbar />
       <div style={styles.pageContainer}>
         <h2 style={styles.heading}>
           {"Elevate Your Career, Empower Your Future\nwith "}

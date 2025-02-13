@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
-
+import Navbar from "../Components/navbar";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -112,6 +112,36 @@ const LoginPage = () => {
   };
 
   return (
+  <div>
+
+     {/* Get Started Button */}
+     <div style={{ position: "absolute", right: "20px", top: "20px" }}>
+        <button
+          style={{
+            backgroundColor: "white",
+            color: "#ff5800",
+            border: "2px solid #ff5800",
+            padding: "10px 25px",
+            borderRadius: "30px",
+            fontSize: "16px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            transition: "all 0.3s ease",
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "#ff5800";
+            e.target.style.color = "white";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "white";
+            e.target.style.color = "#ff5800";
+          }}
+          onClick={() => navigate("/signup")}
+        >
+          Get started
+        </button>
+      </div>
+    <Navbar />
     <div style={styles.wrapper}>
       <div style={styles.brand}>
         <h3 style={styles.brandingText}>
@@ -173,6 +203,7 @@ const LoginPage = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };

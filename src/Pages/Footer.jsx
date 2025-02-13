@@ -114,9 +114,10 @@ const Footer = () => {
           <p>Email: <a href="mailto:contact@kavaavi.com" style={{ color: '#ff7f00' }}>contact@kavaavi.com</a></p>
           <p>Phone: <a href="tel:+919545400369" style={{ color: '#ff7f00' }}>+91 (954) 540-0369</a></p>
           <p>Address:
-            <a href="https://www.google.com/maps/search/?api=1&query=1st+Floor,+Plot+No+81,+Wardha+Rd,+Gajanan+Nagar,+Nagpur"
-              target="_blank"
-              style={{ color: '#ff7f00', fontWeight: 'bold' }}>
+          <a href="https://www.google.com/maps/search/?api=1&query=1st+Floor,+Plot+No+81,+Wardha+Rd,+Gajanan+Nagar,+Nagpur"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ color: '#ff7f00', fontWeight: 'bold' }}>
               1st Floor, Plot No 81, Wardha Rd, Gajanan Nagar, Nagpur.
             </a>
           </p>

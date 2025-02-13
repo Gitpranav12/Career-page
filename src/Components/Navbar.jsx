@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "./logooo.png"; 
 
 
 const Navbar = () => {
-
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation(); // ✅ Get the current route
+
 
   return (
     <>
@@ -128,6 +129,15 @@ const Navbar = () => {
                 Career
               </Link>
             </li>
+
+            {/* ✅ Conditionally Show "Login as Admin" Only on /career Page */}
+            {location.pathname === "/career" && (
+              <li>
+                <Link to="/admin-login" style={{ color: "red", fontWeight: "bold" }}>
+                  Login as Admin
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

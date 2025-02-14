@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminNavbar from "../Components/AdminNavbar"; 
 
 const AddJob = () => {
   const [formData, setFormData] = useState({
@@ -144,6 +145,7 @@ const AddJob = () => {
   };
 
   return (
+    <div><AdminNavbar /> 
     <div style={styles.container}>
       <div style={styles.formContainer}>
         <h2 style={styles.title}>Job Registration Form</h2>
@@ -188,6 +190,7 @@ const AddJob = () => {
           <button type="submit" style={styles.button} disabled={loading}>Register Job</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AdminNavbar from "../Components/AdminNavbar"; //  import
 
 const AddInternship = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +25,7 @@ const AddInternship = () => {
   // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     setLoading(true);
     setMessage("");
 
@@ -127,6 +129,70 @@ const AddInternship = () => {
             </button>
           </div>
         </form>
+=======
+    console.log("Form submitted:", formData);
+  };
+
+  return (
+    <div>
+      <AdminNavbar /> {/*  Navbar added here */}
+      <div style={styles.body}>
+        <div style={styles.formContainer}>
+          <h2 style={styles.heading}>Internship Application Form</h2>
+          <form onSubmit={handleSubmit}>
+            {[
+              { id: "Internship_id", label: "Employee ID", type: "text" },
+              { id: "Title", label: "Internship Title", type: "text" },
+              { id: "Description", label: "Description", type: "textarea" },
+              { id: "Requirement", label: "Requirements", type: "textarea" },
+              { id: "Duration", label: "Duration", type: "text" },
+              { id: "Stipend", label: "Stipend", type: "text" },
+              { id: "Location", label: "Location", type: "text" },
+              { id: "Posted_Date", label: "Posted Date", type: "date" },
+              {
+                id: "Application_Deadline",
+                label: "Application Deadline",
+                type: "date",
+              },
+            ].map(({ id, label, type }) => (
+              <div key={id} style={styles.formGroup}>
+                <label htmlFor={id} style={styles.label}>
+                  {label}
+                </label>
+                {type === "textarea" ? (
+                  <textarea
+                    id={id}
+                    name={id}
+                    style={styles.textarea}
+                    value={formData[id]}
+                    onChange={handleChange}
+                    placeholder={`Enter ${label}`}
+                    rows="3"
+                    required
+                  />
+                ) : (
+                  <input
+                    id={id}
+                    name={id}
+                    type={type}
+                    style={styles.input}
+                    value={formData[id]}
+                    onChange={handleChange}
+                    placeholder={`Enter ${label}`}
+                    required
+                  />
+                )}
+              </div>
+            ))}
+
+            <div style={styles.formGroup}>
+              <button type="submit" style={styles.button}>
+                Submit Application
+              </button>
+            </div>
+          </form>
+        </div>
+>>>>>>> 76e4f15ecaf456f54eabd4674487abe77e1200da
       </div>
     </div>
   );

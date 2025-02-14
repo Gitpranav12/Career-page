@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import AdminNavbar from "../Components/AdminNavbar"; 
+import React, { useState } from 'react'; 
+import AdminNavbar from '../Components/AdminNavbar';
 
 const AddJob = () => {
   const [formData, setFormData] = useState({
@@ -14,17 +14,22 @@ const AddJob = () => {
     Application_Deadline: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Data Submitted:', formData);
-    // Add backend API call or other logic here
-  };
-
+  const [showPopup, setShowPopup] = useState(false);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log("Form submitted:", formData);
+      setShowPopup(true);
+    };
+  
+    const closePopup = () => {
+      setShowPopup(false);
+    };
   const styles = {
     container: {
       display: 'flex',
@@ -93,6 +98,33 @@ const AddJob = () => {
     buttonHover: {
       background: '#cc6b11',
     },
+    popup: {
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        background: "#fff",
+        color: "#000",
+        padding: "20px 30px",
+        borderRadius: "10px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        fontSize: "1.2rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "300px",
+      },
+     
+      okButton: {
+        marginTop: "10px",
+        background: "#f97902",
+        color: "#fff",
+        border: "none",
+        padding: "8px 16px",
+        borderRadius: "5px",
+        cursor: "pointer",
+        fontSize: "1rem",
+      },
   };
 
   return (
@@ -239,15 +271,21 @@ const AddJob = () => {
             />
           </div>
           <div style={styles.formGroup}>
-            <button type="submit" style={styles.button}>
-              Register Job
-            </button>
-          </div>
-        </form>
+              <button type="submit" style={styles.button}>
+                Submit Application
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-    </div>
-  );
+      {showPopup && (
+        <div style={styles.popup}>  
+          <p>registration successful!</p>
+          <button onClick={closePopup} style={styles.okButton}>OK</button>
+        </div>
+          )}
+          </div>
+        );
 };
 
 export default AddJob;

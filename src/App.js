@@ -1,11 +1,9 @@
-//import Searchbar from './Common/Searchbar';
-//import CareerDropdown from './Common/CareerDropdown';
-//import ApplicationForm from './Common/ApplicationForm';
-import Footer from "./Pages/Footer";
+import React from 'react';
 import AddJob from "./Admin/AddJob";
 import AddInternship from "./Admin/AddInternship";
 import Dashboard from "./Admin/Dashboard";
 import "./App.css";
+<<<<<<< HEAD
 
 import InternshipCard from "./Frontend/Internship/InternshipCard";
 
@@ -20,52 +18,56 @@ import InternshipDetails from "./Frontend/Internship/InternshipDetails";
 
 //import Navbar from "./Components/navbar";
 import AdminNavbar from "./Components/AdminNavbar";
+=======
+import Navbar from "./Components/navbar";
+// import Home from "./Pages/Home";
+import LoginPage from "./Admin/LoginPage";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Footer from "./Pages/Footer";
+import ManageApplicationInternship from './Admin/ManageApplicationInternship';
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
 
-//import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
-//import Intenrships from './Pages/Intenrships';
-//import ManageApplicationJob from './Admin/ManageApplicationJob';
-import ManageApplicationIntenrship from './Admin/ManageApplicationInternship';
 
 function App() {
   return (
     <>
       <Router>
+<<<<<<< HEAD
 
       <ConditionalNavbar />
 <Routes>
+=======
+      <ConditionalNavbar />
+      
+        <Routes>
+          
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
           <Route path="/" element={<LoginPage />} />
           <Route path="/jobList" element={<JobList/>} />
           <Route path="/jobDetails/:id" element={<JobDetails />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addInternship" element={<AddInternship />} />
           <Route path="/addjob" element={<AddJob />} />
-          <Route path="/manageapplicationinternship" element={<ManageApplicationIntenrship />} />
-          
-
+          <Route path="/manage" element={<ManageApplicationInternship />} />
         </Routes>
-        <Footer />
+        <ConditionalFooter />
       </Router>
     </>
   );
 }
 
-// const ConditionalNavbar = () => {
-//   const location = useLocation();
-//   return location.pathname === "/" ? <Navbar /> : null;
-// };
-
+// Conditionally render Navbar based on the current route
 const ConditionalNavbar = () => {
   const location = useLocation();
-  console.log("Current Path:", location.pathname); // Debugging output
-
-  if (location.pathname === "/") {
-    return <Navbar />; // Show Home Navbar
-  } else if (location.pathname.startsWith("/dashboard")) {
-    return <AdminNavbar />; // Show Admin Navbar for all dashboard pages
-  }
-
-  return null; // No Navbar for other pages
+  // Show Navbar only if the path is not '/' (Login page) or '/manage'
+  return location.pathname === "/dashboard" ? <Navbar/>: null;
 };
 
+// Conditionally render Footer based on the current route
+const ConditionalFooter = () => {
+  const location = useLocation();
+  // Show Footer only on the /dashboard route
+  return location.pathname === "/dashboard" ? <Footer /> : null;
+};
 
 export default App;

@@ -13,6 +13,7 @@ const AddInternship = () => {
     application_Deadline: "",
   });
 
+<<<<<<< HEAD
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -132,6 +133,24 @@ const AddInternship = () => {
 =======
     console.log("Form submitted:", formData);
   };
+=======
+  const [showPopup, setShowPopup] = useState(false);
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form submitted:", formData);
+        setShowPopup(true);
+      };
+    
+      const closePopup = () => {
+        setShowPopup(false);
+      };
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
 
   return (
     <div>
@@ -194,6 +213,12 @@ const AddInternship = () => {
         </div>
 >>>>>>> 76e4f15ecaf456f54eabd4674487abe77e1200da
       </div>
+      {showPopup && (
+        <div style={styles.popup}>  
+          <p>registration successful!</p>
+          <button onClick={closePopup} style={styles.okButton}>OK</button>
+        </div>
+      )}
     </div>
   );
 };
@@ -245,6 +270,33 @@ const styles = {
     borderRadius: "5px",
     cursor: "pointer",
     width: "100%",
+  },
+  popup: {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    background: "#fff",
+    color: "#000",
+    padding: "20px 30px",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    fontSize: "1.2rem",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "300px",
+  },
+ 
+  okButton: {
+    marginTop: "10px",
+    background: "#f97902",
+    color: "#fff",
+    border: "none",
+    padding: "8px 16px",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "1rem",
   },
 };
 

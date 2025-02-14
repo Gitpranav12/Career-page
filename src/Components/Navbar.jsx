@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "./logooo.png"; 
 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation(); // ✅ Get the current route
+
 
   return (
     <>
@@ -53,16 +55,19 @@ const Navbar = () => {
           color: black;
           text-decoration: none;
           padding: 0.5rem 1rem;
-          border-radius: 0.375rem;
+          // border-radius: 0.375rem;
         }
 
-        .menu-list li a:hover {
-          background-color:rgba(249, 133, 0, 0.95); /* Blue hover */
+       .menu-list li a:hover {
+         color: orange; /* Change text color on hover */
+         border-bottom: 2px solid orange; /* Add an orange underline */
+         text-decoration: none;
         }
 
         /* Mobile */
         @media (max-width: 768px) {
           .menu-button {
+          
             display: block;
           }
 
@@ -75,6 +80,7 @@ const Navbar = () => {
             background-color: #3182ce;
             flex-direction: column;
             padding: 1rem;
+
             gap: 1rem;
           }
         }
@@ -92,7 +98,7 @@ const Navbar = () => {
 
           <ul className={`menu-list`}>
             <li>
-              <Link to="https://www.kavaavi.com/index.html#" className="block py-2 px-4 hover:bg-blue-500 rounded-md">
+              <Link to="https://www.kavaavi.com/index.html#" className=" py-2 px-4 hover:bg-blue-500 ">
                 Home
               </Link>
             </li>
@@ -123,6 +129,15 @@ const Navbar = () => {
                 Career
               </Link>
             </li>
+
+            {/* ✅ Conditionally Show "Login as Admin" Only on /career Page */}
+            {location.pathname === "/career" && (
+              <li>
+                <Link to="/admin-login" style={{ color: "red", fontWeight: "bold" }}>
+                  Login as Admin
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

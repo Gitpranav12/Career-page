@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import AdminNavbar from "../Components/AdminNavbar"; 
+import React, { useState } from 'react'; 
+import AdminNavbar from '../Components/AdminNavbar';
 
 const AddJob = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,7 @@ const AddJob = () => {
     application_Deadline: '',
   });
 
+<<<<<<< HEAD
   const [message, setMessage] = useState(""); // Success/Error message
   const [loading, setLoading] = useState(false); // Loading state
 
@@ -71,6 +72,24 @@ const AddJob = () => {
     }
   };
 
+=======
+  const [showPopup, setShowPopup] = useState(false);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log("Form submitted:", formData);
+      setShowPopup(true);
+    };
+  
+    const closePopup = () => {
+      setShowPopup(false);
+    };
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
   const styles = {
     container: {
       display: 'flex',
@@ -142,6 +161,33 @@ const AddJob = () => {
       color: message.includes("Error") ? 'red' : 'green',
       marginTop: '10px',
     },
+    popup: {
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        background: "#fff",
+        color: "#000",
+        padding: "20px 30px",
+        borderRadius: "10px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+        fontSize: "1.2rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "300px",
+      },
+     
+      okButton: {
+        marginTop: "10px",
+        background: "#f97902",
+        color: "#fff",
+        border: "none",
+        padding: "8px 16px",
+        borderRadius: "5px",
+        cursor: "pointer",
+        fontSize: "1rem",
+      },
   };
 
   return (
@@ -184,15 +230,43 @@ const AddJob = () => {
             <input type="date" id="posted_Date" name="posted_Date" style={styles.input} value={formData.posted_Date} onChange={handleChange} required />
           </div>
           <div style={styles.formGroup}>
+<<<<<<< HEAD
             <label htmlFor="application_Deadline" style={styles.label}>Application Deadline</label>
             <input type="date" id="application_Deadline" name="application_Deadline" style={styles.input} value={formData.application_Deadline} onChange={handleChange} required />
           </div>
           <button type="submit" style={styles.button} disabled={loading}>Register Job</button>
         </form>
+=======
+            <label htmlFor="Application_Deadline" style={styles.label}>
+              Application Deadline
+            </label>
+            <input
+              type="date"
+              id="Application_Deadline"
+              name="Application_Deadline"
+              style={styles.input}
+              value={formData.Application_Deadline}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div style={styles.formGroup}>
+              <button type="submit" style={styles.button}>
+                Submit Application
+              </button>
+            </div>
+          </form>
+        </div>
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
       </div>
-    </div>
-    </div>
-  );
+      {showPopup && (
+        <div style={styles.popup}>  
+          <p>registration successful!</p>
+          <button onClick={closePopup} style={styles.okButton}>OK</button>
+        </div>
+          )}
+          </div>
+        );
 };
 
 export default AddJob;

@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
+<<<<<<< HEAD
 const InternshipApplicationForm = ({ internshipId }) => {
+=======
+// In the InternshipApplicationForm
+//import { useLocation } from 'react-router-dom';
+
+const InternshipApplicationForm = () => {
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -124,9 +131,75 @@ const InternshipApplicationForm = ({ internshipId }) => {
         </div>
       </form>
 
+<<<<<<< HEAD
       {message && <p>{message}</p>}
+=======
+
+      {/* Internal CSS */}
+      <style jsx>{`
+        .form-container {
+          font-family: 'Arial', sans-serif;
+          background-color: #fff;
+          padding: 20px;
+          max-width: 600px;
+          margin: 0 auto;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+          text-align: center;
+          color: #333;
+          font-size: 1.8rem;
+        }
+
+        .form-group {
+          margin-bottom: 15px;
+        }
+
+        label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+          font-size: 1rem;
+          color: #333;
+        }
+
+        input, select, textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 1rem;
+          margin-bottom: 10px;
+          box-sizing: border-box;
+        }
+
+        textarea {
+          resize: vertical;
+        }
+
+        button {
+          background-color: #f97902;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-size: 1rem;
+          cursor: pointer;
+          width: 100%;
+        }
+
+        button:hover {
+          background-color: #e87001;
+        }
+      `}</style>
+    
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
     </div>
   );
 };
+
+
 
 export default InternshipApplicationForm;

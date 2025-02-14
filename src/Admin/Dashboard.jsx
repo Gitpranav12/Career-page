@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar"; //
+// import Navbar from "../Components/navbar"; //
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../Components/AdminNavbar"; 
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Dashboard = () => {
       backgroundColor: "#fff",
       padding: "1rem",
       borderRadius: "10px",
-      border: "1px solid rgba(255, 94, 0, 0.5)",
+      border: "1px solid rgba(255, 153, 0, 0.69)",
       overflow: "hidden",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
       position: "relative",
@@ -98,14 +99,14 @@ const Dashboard = () => {
       title: "Manage Applications",
       text: "",
       buttonText: "Manage",
-      onClick: () => navigate("/manageapplicationinternship"),
+      onClick: () => navigate("/manage"),
     },
   ];
 
   return (
     <>
       {/* Navbar is now inside the return statement */}
-      <Navbar /> 
+      <AdminNavbar />
       <div style={styles.body}>
         {cards.map((card, index) => (
           <div

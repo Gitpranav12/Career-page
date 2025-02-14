@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 
+<<<<<<< HEAD
+const InternshipApplicationForm = ({ internshipId }) => {
+=======
 // In the InternshipApplicationForm
 //import { useLocation } from 'react-router-dom';
 
 const InternshipApplicationForm = () => {
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    mobileNo: '',
+    mobile_no: '',
     designation: '',
     branch: '',
-    passingYear: '',
+    passingYr: '',
     domain: '',
     experience: '',
     resume: null,
   });
+
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -24,103 +30,81 @@ const InternshipApplicationForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic, e.g., sending the form data to an API or backend
-    console.log('Form Data:', formData);
+    
+    const data = new FormData();
+    data.append('internshipId', internshipId);
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('mobile_mo', formData.mobile_no);
+    data.append('designation', formData.designation);
+    data.append('branch', formData.branch);
+    data.append('passingYr', formData.passingYr);
+    data.append('domain', formData.domain);
+    data.append('experience', formData.experience);
+    data.append('resume', formData.resume);
+
+    try {
+      const response = await fetch('http://localhost:8080/api/apply_internship', {
+        method: 'POST',
+        body: data,
+      });
+
+      if (response.ok) {
+        setMessage('Application submitted successfully!');
+      } else {
+        const errorText = await response.text();
+        setMessage(`Error: ${errorText}`);
+      }
+    } catch (error) {
+      setMessage('Error submitting the form');
+      console.error(error);
+    }
   };
 
   return (
     <div className="form-container">
       <h2>Internship Application Form</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <div className="form-group">
+          <label htmlFor="internshipId">internship Id</label>
+          <input type="text" id="internshipId" name="internshipId" value={formData.internshipId} onChange={handleChange} required />
+        </div>
+
         <div className="form-group">
           <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter your Name"
-            required
-          />
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Email Id</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter Email Id"
-            required
-          />
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label htmlFor="mobileNo">Phone Number</label>
-          <input
-            type="tel"
-            id="mobileNo"
-            name="mobileNo"
-            value={formData.mobileNo}
-            onChange={handleChange}
-            placeholder="Enter Phone number"
-            required
-          />
+          <label htmlFor="mobile_no">Phone Number</label>
+          <input type="tel" id="mobile_no" name="mobile_no" value={formData.mobile_no} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="designation">Designation</label>
-          <textarea
-            id="designation"
-            name="designation"
-            rows="2"
-            value={formData.designation}
-            onChange={handleChange}
-            placeholder="Enter Designation"
-            required
-          />
+          <input type="text" id="designation" name="designation" value={formData.designation} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="branch">Branch</label>
-          <input
-            type="text"
-            id="branch"
-            name="branch"
-            value={formData.branch}
-            onChange={handleChange}
-            placeholder="Enter Branch"
-            required
-          />
+          <input type="text" id="branch" name="branch" value={formData.branch} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label htmlFor="passingYear">Passing Year</label>
-          <input
-            type="number"
-            id="passingYear"
-            name="passingYear"
-            value={formData.passingYear}
-            onChange={handleChange}
-            placeholder="Enter Passing Year"
-            required
-          />
+          <label htmlFor="passingYr">Passing Year</label>
+          <input type="number" id="passingYr" name="passingYr" value={formData.passingYr} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label htmlFor="domain">In which domain you want to do internship?</label>
-          <select
-            id="domain"
-            name="domain"
-            value={formData.domain}
-            onChange={handleChange}
-            required
-          >
+          <label htmlFor="domain">Domain</label>
+          <select id="domain" name="domain" value={formData.domain} onChange={handleChange} required>
             <option value="">Select your domain</option>
             <option value="Full Stack Developer">Full Stack Developer</option>
             <option value="Web Development">Web Development</option>
@@ -134,26 +118,12 @@ const InternshipApplicationForm = () => {
 
         <div className="form-group">
           <label htmlFor="experience">Experience (in years)</label>
-          <input
-            type="number"
-            id="experience"
-            name="experience"
-            value={formData.experience}
-            onChange={handleChange}
-            step="0.1"
-          />
+          <input type="number" id="experience" name="experience" value={formData.experience} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="resume">Upload Resume</label>
-          <input
-            type="file"
-            id="resume"
-            name="resume"
-            accept=".pdf,.doc,.docx"
-            onChange={handleChange}
-            required
-          />
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" onChange={handleChange} required />
         </div>
 
         <div className="form-group">
@@ -161,6 +131,9 @@ const InternshipApplicationForm = () => {
         </div>
       </form>
 
+<<<<<<< HEAD
+      {message && <p>{message}</p>}
+=======
 
       {/* Internal CSS */}
       <style jsx>{`
@@ -222,6 +195,7 @@ const InternshipApplicationForm = () => {
         }
       `}</style>
     
+>>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
     </div>
   );
 };

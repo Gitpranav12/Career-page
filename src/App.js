@@ -21,11 +21,7 @@ function App() {
      
       
         <Routes>
-          
->>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
           <Route path="/" element={<LoginPage />} />
-          <Route path="/jobList" element={<JobList/>} />
-          <Route path="/jobDetails/:id" element={<JobDetails />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addInternship" element={<AddInternship />} />
           <Route path="/addjob" element={<AddJob />} />

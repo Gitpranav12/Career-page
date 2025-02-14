@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 //import searchImage from "./search.jpg";
 //import intership from "./intership.jpg";
 //import job from "./job.jpg";
-import Navbar from "../Components/navbar";
+import Navbar from "../Components/Navbar";
 
 export default function Home() {
   const [keywords, setKeywords] = useState("");

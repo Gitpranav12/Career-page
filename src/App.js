@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Footer from "./Pages/Footer";
 import ManageApplicationInternship from './Admin/ManageApplicationInternship';
 import InternshipCard from './Frontend/Internship/InternshipCard';
+import WhatOffer from './Components/WhatOffer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <InternshipCard /> 
       <ConditionalNavbar />
         <Home/>
+        <WhatOffer/>
      
       
         <Routes>

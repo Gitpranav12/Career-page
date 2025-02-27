@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const InternshipDetails = () => {
+const InternshipDetailsAdmin = () => {
   const { id } = useParams(); 
   const [internship, setInternship] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,9 +37,9 @@ const InternshipDetails = () => {
       <div className="internship-info"><strong>Posted Date:</strong> {internship.posted_Date}</div>
       <div className="internship-info"><strong>Application Deadline:</strong> {internship.application_Deadline}</div>
       <div className="button-container">
-      <button className="apply-button" onClick={() => navigate(`/InternshipApplicationForm/${internship.internship_id}`)}> 
-  Apply Now
-</button>
+      <button className="apply-button" onClick={() => navigate("/intershiplistadmin")}> 
+        Close
+    </button>
 
 </div>
 
@@ -109,4 +109,4 @@ const InternshipDetails = () => {
 };
 
 
-export default InternshipDetails;
+export default InternshipDetailsAdmin;

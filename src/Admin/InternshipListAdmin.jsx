@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import SearchBarintern from "../../Pages/SearchBarintern";
-
-const InternshipList = () => {
+import SearchBarintern from "../Pages/SearchBarintern";
+const InternshipListAdmin = () => {
   const [internshipList, setInternshipList] = useState([]);
 
   // Fetch all internships when the component mounts
@@ -11,7 +10,7 @@ const InternshipList = () => {
     fetchAllInternships();
   }, []);
 
-  
+  // Function to fetch all internships initially
   const fetchAllInternships = () => {
     axios
       .get("http://localhost:8082/api/getInternshipfield")
@@ -27,7 +26,7 @@ const InternshipList = () => {
   const handleSearch = (searchValue) => {
     axios
       .get("http://localhost:8082/api/search_internship", {
-        params: { skills: searchValue }, 
+        params: { skills: searchValue }, // Sending skills as query param
       })
       .then((response) => {
         setInternshipList(response.data);
@@ -65,9 +64,10 @@ const InternshipList = () => {
                   <td>{internship[1]}</td>
                   <td>{internship[2]}</td>
                   <td>
-                    <Link to={`/internshipDetails/${internship[0]}`}>
-                      <button className="view-button">View</button>
-                    </Link>
+                   <Link to={`/InternshipDetailsAdmin/${internship[0]}`}>
+                     <button className="view-button">View</button><br></br><br></br>
+                   </Link>
+                   <button className="view-button" >Delete</button>    
                   </td>
                 </tr>
               ))
@@ -129,4 +129,4 @@ const InternshipList = () => {
   );
 };
 
-export default InternshipList;
+export default InternshipListAdmin;

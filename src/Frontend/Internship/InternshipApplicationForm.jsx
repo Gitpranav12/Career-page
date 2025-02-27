@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
+import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useRef} from "react"; 
+//import React, { useState } from 'react';
 
-<<<<<<< HEAD
-const InternshipApplicationForm = ({ internshipId }) => {
-=======
 // In the InternshipApplicationForm
 //import { useLocation } from 'react-router-dom';
 
 const InternshipApplicationForm = () => {
->>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
+
+  const { id } = useParams(); 
+  const fileInputRef = useRef(null);
+
+  console.log("Internship ID from URL:", id); 
   const [formData, setFormData] = useState({
+    internshipId:  id || "",
     name: '',
     email: '',
     mobile_no: '',
@@ -19,9 +24,16 @@ const InternshipApplicationForm = () => {
     experience: '',
     resume: null,
   });
+  useEffect(() => {
+    if (id) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        internshipId: id, 
+      }));
+    }
+  }, [id]);
 
   const [message, setMessage] = useState('');
-
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     setFormData({
@@ -29,15 +41,14 @@ const InternshipApplicationForm = () => {
       [name]: type === 'file' ? files[0] : value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     const data = new FormData();
-    data.append('internshipId', internshipId);
+    data.append('internshipId', formData.internshipId);
     data.append('name', formData.name);
     data.append('email', formData.email);
-    data.append('mobile_mo', formData.mobile_no);
+    data.append('mobile_no', formData.mobile_no);
     data.append('designation', formData.designation);
     data.append('branch', formData.branch);
     data.append('passingYr', formData.passingYr);
@@ -46,22 +57,42 @@ const InternshipApplicationForm = () => {
     data.append('resume', formData.resume);
 
     try {
-      const response = await fetch('http://localhost:8080/api/apply_internship', {
-        method: 'POST',
-        body: data,
-      });
+        const response = await fetch('http://localhost:8082/api/apply_internship', {
+            method: 'POST',
+            body: data,
+        });
 
-      if (response.ok) {
-        setMessage('Application submitted successfully!');
-      } else {
-        const errorText = await response.text();
-        setMessage(`Error: ${errorText}`);
-      }
+        if (response.ok) {
+            setMessage('Application submitted successfully!');
+
+            // Reset form fields after submission
+            setFormData({
+                internshipId: id || "", // Keep internship ID from URL
+                name: '',
+                email: '',
+                mobile_no: '',
+                designation: '',
+                branch: '',
+                passingYr: '',
+                domain: '',
+                experience: '',
+                resume: null, 
+            });
+
+        
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
+
+        } else {
+            const errorText = await response.text();
+            setMessage(`Error: ${errorText}`);
+        }
     } catch (error) {
-      setMessage('Error submitting the form');
-      console.error(error);
+        setMessage('Error submitting the form');
+        console.error(error);
     }
-  };
+};
 
   return (
     <div className="form-container">
@@ -73,10 +104,10 @@ const InternshipApplicationForm = () => {
         </div>
 
         <div className="form-group">
+
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
-
         <div className="form-group">
           <label htmlFor="email">Email Id</label>
           <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
@@ -123,17 +154,15 @@ const InternshipApplicationForm = () => {
 
         <div className="form-group">
           <label htmlFor="resume">Upload Resume</label>
-          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" onChange={handleChange} required />
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"   ref={fileInputRef} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
+          
           <button type="submit">Submit Application</button>
         </div>
       </form>
 
-<<<<<<< HEAD
-      {message && <p>{message}</p>}
-=======
 
       {/* Internal CSS */}
       <style jsx>{`
@@ -195,7 +224,6 @@ const InternshipApplicationForm = () => {
         }
       `}</style>
     
->>>>>>> 27996c21568da92dbb2fa64a1c79762738bdaf73
     </div>
   );
 };

@@ -23,14 +23,12 @@ const AddInternship = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     setMessage("");
 
-    // Convert Date Fields to ISO Format
     const formattedData = {
       ...formData,
       posted_Date: formData.posted_Date
@@ -42,7 +40,7 @@ const AddInternship = () => {
     };
 
     try {
-      const response = await fetch("YOUR_API_URL_HERE", {
+      const response = await fetch('http://localhost:8082/api/Internship-Enter', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +55,7 @@ const AddInternship = () => {
 
       const result = await response.json();
       console.log("Success:", result);
-      setMessage("✅ Internship registered successfully!");
+      setMessage(" Internship registered successfully!");
       setShowPopup(true); // Show success popup
 
       // Reset Form
@@ -73,7 +71,7 @@ const AddInternship = () => {
       });
     } catch (error) {
       console.error("Error:", error);
-      setMessage(`❌ Error: ${error.message}`);
+      setMessage(` Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -144,7 +142,7 @@ const AddInternship = () => {
 
       {showPopup && (
         <div style={styles.popup}>
-          <p>✅ Registration Successful!</p>
+          <p> Registration Successful!</p>
           <button onClick={closePopup} style={styles.okButton}>OK</button>
         </div>
       )}

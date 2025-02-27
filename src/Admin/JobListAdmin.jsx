@@ -3,12 +3,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-const JobList = () => {
+const JobListAdmin = () => {
   const [jobList, setJobList] = useState([]);
 
   // Fetch data from the backend when the component mounts
   useEffect(() => {
-    axios.get('http://localhost:8080/api/getJobfield')
+    axios.get(` http://localhost:8082/api/getJobfield`)
       .then(response => {
         setJobList(response.data); // Store fetched job data
       })
@@ -16,6 +16,30 @@ const JobList = () => {
         console.error("Error fetching jobs:", error);
       });
   }, []);
+ 
+
+// Function to delete a job
+
+const handleDelete = (id) => {
+  if (window.confirm("Are you sure you want to delete this job?")) {
+    axios
+      .delete(`http://localhost:8082/api/delete-job/${id}`)
+      .then((response) => {
+        alert(response.data); // Show success message
+        try {
+          JobListAdmin(); // Refresh job list after deletion
+        } catch (err) {
+          console.error("Error refreshing job list:", err);
+          alert("Error refreshing job list.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting job:", error);
+        alert("Error deleting job. Please try again.");
+      });
+  }
+};
+
 
 
   //const handleViewClick = (job) => {
@@ -27,7 +51,7 @@ const JobList = () => {
       <table className="job-table">
         <thead>
           <tr>
-            <th>Job_id</th>
+            <th>ID</th>
             <th>Title</th>
             <th>AllicationDeadline</th>
             <th>Action</th>
@@ -39,19 +63,24 @@ const JobList = () => {
               <td colSpan="3" className="no-jobs-message">No jobs available</td>
             </tr>
           ) : (
-            jobList.map((job, index) => (
-                <tr key={index}>
-                  <td>{job[0]}</td>
-                  <td>{job[1]}</td>
-                  <td>{job[2]}</td>
-                  <td>
-                    <Link to={`/jobDetails/${job[0]}`}> {/* Ensure `id` is correctly passed */}
-                      <button className="view-button">View</button>
-                    </Link>
-                  </td>
-                </tr>
-              ))
-            )}
+            jobList.map((job, index) => {
+
+              
+              console.log("Job ID:", job.job_id); // Add this log to check if Job_id is valid
+  return (
+    <tr key={index}>
+      <td>{job[0]}</td>
+      <td>{job[1]}</td>
+      <td>{job[2]}</td>
+      <td>
+    <Link to={`/jobDetailsAdmin/${job[0]}`}>
+  <button className="view-button">View</button><br></br><br></br>
+</Link>
+<button className="view-button" onClick={() => handleDelete(job[0])}>Delete</button>           
+                 
+                </td>
+              </tr>)})
+          )}
         </tbody>
       </table>
 
@@ -110,4 +139,4 @@ const JobList = () => {
   );
 };
 
-export default JobList;
+export default JobListAdmin;

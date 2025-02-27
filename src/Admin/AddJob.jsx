@@ -14,28 +14,55 @@ const AddJob = () => {
   });
 
   const [showPopup, setShowPopup] = useState(false);
-  const [loading, setLoading] = useState(false); // Fixed: Defined loading state
-  const [message, setMessage] = useState(''); // Fixed: Defined message state
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setMessage("Job registration successful!");
-      setShowPopup(true);
-      setLoading(false); // Hide loading state after submission
-    }, 1000);
+    setLoading(true);
+    setMessage('');
+    
+    try {
+      const response = await fetch('http://localhost:8082/api/Job-Enter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setMessage('Job registration successful!');
+        setShowPopup(true);
+        setFormData({
+          title: '',
+          description: '',
+          requirement: '',
+          location: '',
+          job_Type: '',
+          package: '',
+          posted_Date: '',
+          application_Deadline: '',
+        });
+      } else {
+        setMessage('Error: Failed to register job.');
+      }
+    } catch (error) {
+      setMessage('Error: Unable to connect to server.');
+    }
+
+    setLoading(false);
   };
 
   const closePopup = () => {
     setShowPopup(false);
   };
+
 
   const styles = {
     container: {

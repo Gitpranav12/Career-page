@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const JobDetails = () => {
+const JobDetailsAdmin = () => {
   const { id } = useParams(); // Get job ID from URL
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
  
   useEffect(() => {
     axios.get(`http://localhost:8082/api/getjob/${id}`)
@@ -40,9 +39,9 @@ const JobDetails = () => {
         
         {/* Centered Button */}
         <div className="button-container">
-        <button className="apply-button" onClick={() => navigate(`/JobApplicationForm/${job.job_id}`)}> 
-  Apply Now
-</button>
+        <button className="apply-button" onClick={() => navigate("/JobListAdmin")}> 
+        Close
+    </button>
 
 </div>
 
@@ -111,4 +110,4 @@ const JobDetails = () => {
   );
 };
 
-export default JobDetails;
+export default JobDetailsAdmin;

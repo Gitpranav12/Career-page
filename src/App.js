@@ -22,6 +22,7 @@ import JobListAdmin from './Admin/JobListAdmin';
 import JobDetailsAdmin from './Admin/JobDetailsAdmin';
 import InternshipDetailsAdmin from './Admin/InternshipDetailsAdmin'
 import InternshipListAdmin from './Admin/InternshipListAdmin';
+import WhatOffer from './Components/WhatOffer';
 function App() {
   return (
     <>
@@ -32,6 +33,11 @@ function App() {
       <ShowJobApplicant />
 
         <Home/>
+
+        <WhatOffer/>
+     
+      
+
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

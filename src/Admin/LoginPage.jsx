@@ -27,34 +27,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      {/* Get Started Button */}
-      <div style={{ position: "absolute", right: "20px", top: "20px" }}>
-        <button
-          style={{
-            backgroundColor: "white",
-            color: "#ff5800",
-            border: "2px solid #ff5800",
-            padding: "10px 25px",
-            borderRadius: "30px",
-            fontSize: "16px",
-            cursor: "pointer",
-            fontWeight: "bold",
-            transition: "all 0.3s ease",
-          }}
-          onMouseOver={(e) => {
-            e.target.style.backgroundColor = "#ff5800";
-            e.target.style.color = "white";
-          }}
-          onMouseOut={(e) => {
-            e.target.style.backgroundColor = "white";
-            e.target.style.color = "#ff5800";
-          }}
-          onClick={() => navigate("/signup")}
-        >
-          Get started
-        </button>
-      </div>
-
+      
       <Navbar />
 
       <div style={{ display: "flex", height: "100vh" }}>
@@ -112,7 +85,7 @@ const inputStyle = {
 
 const submitButtonStyle = {
   display: "block",
-  width: "100%",
+  width: "114%",
   margin: "1.5rem 0",
   padding: "1.2rem",
   background: "#ff5800",

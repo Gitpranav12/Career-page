@@ -6,9 +6,9 @@ import AddJob from "./Admin/AddJob";
 import AddInternship from "./Admin/AddInternship";
 import ManageApplicationInternship from "./Admin/ManageApplicationInternship";
 import ManageCard from "./Admin/ManageCard";
-import Navbar from "./Components/Navbar";
+// import Navbar from "./Components/Navbar";
 import Footer from "./Pages/Footer";
-import Home from "./Pages/Home";
+// import Home from "./Pages/Home";
 
 // Simulated authentication (replace with actual login logic)
 const isAuthenticated = () => {

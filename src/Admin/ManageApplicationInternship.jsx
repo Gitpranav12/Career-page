@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const ManageApplicationInternship = () => {
   const [selectedApplication, setSelectedApplication] = useState(null);
+  const navigate = useNavigate(); // Initialize navigation function
 
   const applications = [
     { id: 1, name: "John Doe", email: "john@example.com", role: "Web Developer" },
@@ -19,6 +21,11 @@ const ManageApplicationInternship = () => {
     setSelectedApplication(null);
   };
 
+  // Navigate to ManageCard page
+  const handleManageClick = () => {
+    navigate("/managecard"); 
+  };
+
   const styles = {
     container: { fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif", textAlign: "center", margin: "20px" },
     table: { width: "80%", margin: "20px auto", borderCollapse: "collapse", background: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", borderRadius: "10px", overflow: "hidden" },
@@ -27,6 +34,7 @@ const ManageApplicationInternship = () => {
     button: { padding: "8px 12px", border: "none", cursor: "pointer", color: "white", borderRadius: "4px", margin: "5px" },
     viewBtn: { backgroundColor: "#28a745" },
     deleteBtn: { backgroundColor: "#dc3545" },
+    manageBtn: { backgroundColor: "#007bff" },
     details: { display: selectedApplication ? "block" : "none", margin: "20px auto", padding: "20px", width: "50%", background: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", borderRadius: "10px", textAlign: "center" },
     closeBtn: { backgroundColor: "#dc3545" },
   };
@@ -56,6 +64,9 @@ const ManageApplicationInternship = () => {
                   View
                 </button>
                 <button style={{ ...styles.button, ...styles.deleteBtn }}>Delete</button>
+                <button style={{ ...styles.button, ...styles.manageBtn }} onClick={handleManageClick}>
+                  Manage
+                </button>
               </td>
             </tr>
           ))}
@@ -85,6 +96,9 @@ const ManageApplicationInternship = () => {
                   View
                 </button>
                 <button style={{ ...styles.button, ...styles.deleteBtn }}>Delete</button>
+                <button style={{ ...styles.button, ...styles.manageBtn }} onClick={handleManageClick}>
+                  Manage
+                </button>
               </td>
             </tr>
           ))}
@@ -110,4 +124,4 @@ const ManageApplicationInternship = () => {
   );
 };
 
-export default ManageApplicationInternship ;
+export default ManageApplicationInternship;

@@ -1,78 +1,67 @@
-import React from 'react';
-import AddJob from "./Admin/AddJob";
-import ManageCard from './Admin/ManageCard';
-import AddInternship from "./Admin/AddInternship";
-import Dashboard from "./Admin/Dashboard";
-import "./App.css";
-import Navbar from "./Components/Navbar";
-import Home from "./Pages/Home";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./Admin/LoginPage";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Dashboard from "./Admin/Dashboard";
+import AddJob from "./Admin/AddJob";
+import AddInternship from "./Admin/AddInternship";
+import ManageApplicationInternship from "./Admin/ManageApplicationInternship";
+import ManageCard from "./Admin/ManageCard";
+import Navbar from "./Components/Navbar";
 import Footer from "./Pages/Footer";
-import ManageApplicationInternship from './Admin/ManageApplicationInternship';
-import JobList from './Frontend/Job/jobListShow';
-import JobDetails from './Frontend/Job/JobDetails';
-import JobApplicationForm from './Frontend/Job/JobApplicationForm';
-import InternshipDetails from './Frontend/Internship/InternshipDetails';
-import InternshipList from './Frontend/Internship/InternshipList';
-import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
-import ShowInternshipApplicant from './Admin/ShowInternshipApplicant';
-import ShowJobApplicant from './Admin/ShowJobApplicant';
-import JobListAdmin from './Admin/JobListAdmin';
-import JobDetailsAdmin from './Admin/JobDetailsAdmin';
-import InternshipDetailsAdmin from './Admin/InternshipDetailsAdmin'
-import InternshipListAdmin from './Admin/InternshipListAdmin';
-import WhatOffer from './Components/WhatOffer';
-function App() {
+import Home from "./Pages/Home";
+
+// Simulated authentication (replace with actual login logic)
+const isAuthenticated = () => {
+  return localStorage.getItem("isAdmin") === "true"; // Check if admin is logged in
+};
+
+// Protected Route Component
+const ProtectedRoute = ({ element }) => {
+  return isAuthenticated() ? element : <Navigate to="/" />;
+};
+
+// Layout for Admin Pages (Navbar & Footer)
+const AdminLayout = ({ children }) => {
   return (
     <>
-      <Router>
-      <ConditionalNavbar />
-      <ManageCard />
-      <ShowInternshipApplicant/>
-      <ShowJobApplicant />
-
-        <Home/>
-
-        <WhatOffer/>
      
-      
-
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/addInternship" element={<AddInternship />} />
-          <Route path="/jobListShow" element={<JobList />} />
-          <Route path="/jobDetails/:id" element={<JobDetails />} />
-          <Route path="/JobApplicationForm/:id" element={<JobApplicationForm />} />
-          <Route path="/InternshipList" element={<InternshipList />} />
-          <Route path="/InternshipDetails/:id" element={<InternshipDetails />} />
-          <Route path="/InternshipApplicationForm/:id" element={<InternshipApplicationForm />} />
-          <Route path="/JobListAdmin" element={<JobListAdmin />} />
-        <Route path="/jobDetailsAdmin/:id" element={<JobDetailsAdmin />} />
-        <Route path="/InternshipDetailsAdmin/:id" element={<InternshipDetailsAdmin/>} />
-        <Route path="/internshiplistadmin" element={<InternshipListAdmin />} />
-          <Route path="/addjob" element={<AddJob />} />
-          <Route path="/manage" element={<ManageApplicationInternship />} />
-        </Routes>
-        <ConditionalFooter />
-      </Router>
+      {children}
+      <Footer />
     </>
   );
+};
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Login Route */}
+        <Route path="/" element={<LoginPage />} />
+
+        {/* Admin Routes (Protected) */}
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoute element={<AdminLayout><Dashboard /></AdminLayout>} />}
+        />
+        <Route
+          path="/manageapplication"
+          element={<ProtectedRoute element={<AdminLayout><ManageApplicationInternship /></AdminLayout>} />}
+        />
+        <Route
+          path="/addjob"
+          element={<ProtectedRoute element={<AdminLayout><AddJob /></AdminLayout>} />}
+        />
+        <Route
+          path="/addinternship"
+          element={<ProtectedRoute element={<AdminLayout><AddInternship /></AdminLayout>} />}
+        />
+        <Route
+          path="/managecard"
+          element={<ProtectedRoute element={<AdminLayout><ManageCard /></AdminLayout>} />}
+        />
+      </Routes>
+    </Router>
+  );
 }
-
-// Conditionally render Navbar based on the current route
-const ConditionalNavbar = () => {
-  const location = useLocation();
-  // Show Navbar only if the path is not '/' (Login page) or '/manage'
-  return location.pathname === "/dashboard" ? <Navbar/>: null;
-};
-
-// Conditionally render Footer based on the current route
-const ConditionalFooter = () => {
-  const location = useLocation();
-  // Show Footer only on the /dashboard route
-  return location.pathname === "/dashboard" ? <Footer /> : null;
-};
 
 export default App;

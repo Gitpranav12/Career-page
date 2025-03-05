@@ -99,7 +99,7 @@ const Dashboard = () => {
       title: "Manage Applications",
       text: "",
       buttonText: "Manage",
-      onClick: () => navigate("/manage"),
+      onClick: () => navigate("/managecard"),
     },
   ];
 

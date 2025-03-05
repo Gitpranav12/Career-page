@@ -3,65 +3,68 @@ import { Link } from "react-router-dom";
 import logo from "./logooo.png";
 
 const AdminNavbar = () => {
-  const navbarStyle = {
-    backgroundColor: "white", 
-    color: "black",
-    padding: "5px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  };
+  const styles = `
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Playfair+Display:wght@700&display=swap');
 
-  const logoStyle = {
-    width: "auto", 
-    height: "70px", // Adjust height to maintain proportions
-    objectFit: "contain", 
-  };
+    .navbar {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-  const headlineStyle = {
-    fontSize: "3.5rem", 
-    fontWeight: "800",
-    fontFamily: "'Times New Roman', Times, serif",
-    fontStyle: "italic",
-    color: "#d97706",  
-    margin: "0", 
-    padding: "0", 
-};
+    .logo {
+      height: 70px;
+      object-fit: contain;
+    }
 
+    .headline {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #d97706;
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+    }
 
-  const logoutButtonStyle = {
-    backgroundColor: "#ff5800", // Tailwind  orange
-    padding: "8px 16px",
-    borderRadius: "6px",
-    textDecoration: "none",
-    color: "white",
-    transition: "background-color 0.3s ease-in-out",
-  };
+    .admin-text {
+      font-family: 'Poppins', sans-serif;
+    }
 
-  const logoutButtonHoverStyle = {
-    backgroundColor: "#b91c1c", // Tailwind's red-700
-  };
+    .logout-btn {
+      background-color: #ff5800;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .logout-btn:hover {
+      background-color: #b91c1c;
+    }
+  `;
 
   return (
-    <nav style={navbarStyle}>
-      {/* Logo */}
-      <div>
-        <img src={logo} alt="Logo" style={logoStyle} />
-      </div>
+    <>
+      <style>{styles}</style>
+      <nav className="navbar">
+        {/* Logo */}
+        <img src={logo} alt="Logo" className="logo" />
 
-      {/* Headline */}
-      <h1 style={headlineStyle}>Welcome Admin</h1>
+        {/* Headline */}
+        <h1 className="headline">
+          Welcome<span className="admin-text">Admin</span>
+        </h1>
 
-      {/* Logout Button */}
-      <Link
-        to="/"
-        style={logoutButtonStyle}
-        onMouseEnter={(e) => (e.target.style.backgroundColor = logoutButtonHoverStyle.backgroundColor)}
-        onMouseLeave={(e) => (e.target.style.backgroundColor = logoutButtonStyle.backgroundColor)}
-      >
-        Logout
-      </Link>
-    </nav>
+        {/* Logout Button */}
+        <Link to="/" className="logout-btn">
+          Logout
+        </Link>
+      </nav>
+    </>
   );
 };
 

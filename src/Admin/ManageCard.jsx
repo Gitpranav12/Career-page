@@ -1,162 +1,82 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../Components/AdminNavbar";
+import { FaBriefcase, FaGraduationCap, FaFileAlt, FaClipboardList } from "react-icons/fa"; // Icons
+
 const ManageCard = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const cards = [
+    { title: "List Internship", path: "/internshiplist", icon: <FaGraduationCap /> },
+    { title: "List Job", path: "/job-list", icon: <FaBriefcase /> },
+    { title: "Internship Applications", path: "/application-internship", icon: <FaClipboardList /> },
+    { title: "Job Applications", path: "/application-job", icon: <FaFileAlt /> }
+  ];
+
   return (
     <>
       <style>{`
-   .card-conatiner{
-    background: #ffff;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    height:90vh;
-    justify-content: center;
-   }
-.card{
-  width: 300px;
-  border-radius: 20px;
-  height:350px;
-  background: #1b233d;
-  padding: 5px;
-  overflow: hidden;
-  box-shadow: rgba(237, 237, 247, 0.2) 0px 7px 20px 0px;
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  margin: 10px 10px;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card .top-section {
-  height: 150px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(45deg, rgb(4, 159, 187) 0%, rgb(80, 246, 255) 100%);
-  position: relative;
-}
-
-.card .top-section .border {
-  border-bottom-right-radius: 10px;
-  height: 30px;
-  width: 130px;
-  background: white;
-  background: #1b233d;
-  position: relative;
-  transform: skew(-40deg);
-  box-shadow: -10px -10px 0 0 #1b233d;
-}
-
-.card .top-section .border::before {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  top: 0;
-  right: -15px;
-  background: rgba(255, 255, 255, 0);
-  border-top-left-radius: 10px;
-  box-shadow: -5px -5px 0 2px #1b233d;
-}
-
-.card .top-section::before {
-  content: "";
-  position: absolute;
-  top: 30px;
-  left: 0;
-  background: rgba(255, 255, 255, 0);
-  height: 15px;
-  width: 15px;
-  border-top-left-radius: 15px;
-  box-shadow: -5px -5px 0 2px #1b233d;
-}
-
-.card .top-section .icons .logo .top-section {
-  height: 100%;
-}
-
-
-.card .bottom-section {
-  margin-top: 15px;
-  padding: 10px 5px;
-}
-
-.card .bottom-section .title {
-  display: block;
-  font-size: 17px;
-  font-weight: bolder;
-  color: white;
-  text-align: center;
-  letter-spacing: 2px;
-}
-
-.card .bottom-section .row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.card .bottom-section .row .item {
-  flex: 30%;
-  text-align: center;
-  padding: 5px;
-  color: rgba(170, 222, 243, 0.721);
-}
-
-.card .bottom-section .row .item .big-text {
-  font-size: 12px;
-  display: block;
-}
-
-.card .bottom-section .row .item .regular-text {
-  font-size: 9px;
-}
-
-.card .bottom-section .row .item:nth-child(2) {
-  border-left: 1px solid rgba(255, 255, 255, 0.126);
-  border-right: 1px solid rgba(255, 255, 255, 0.126);
-}`}</style>
+        body {
+          background: #f4f4f9;
+        }
+        .card-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 25px;
+          padding: 50px;
+          min-height: 90vh;
+          align-items: center;
+          animation: fadeIn 1s ease-in-out;
+        }
+        /* Fade-in animation */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .card {
+          width: 320px; /* Increased size */
+          height: 230px; /* Increased size */
+          background: rgba(255, 88, 0, 0.2);
+          border-radius: 20px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease-in-out;
+          cursor: pointer;
+          border: 1px solid rgba(255, 88, 0, 0.3);
+          position: relative;
+          animation: fadeIn 0.8s ease-in-out;
+        }
+        /* Bounce animation on hover */
+        .card:hover {
+          transform: scale(1.05) translateY(-5px);
+          box-shadow: 0 10px 25px rgba(255, 88, 0, 0.6);
+        }
+        .card .icon {
+          font-size: 50px; /* Bigger icon */
+          color: #ff5800;
+          margin-bottom: 10px;
+        }
+        .card .title {
+          font-size: 20px;
+          font-weight: bold;
+          color: #1b233d;
+          text-align: center;
+        }
+      `}</style>
 
       <AdminNavbar />
-      <div className="card-conatiner">
-        <div className="card">
-          <div className="top-section" onClick={() => navigate("/internshiplist")}>
-            <div className="border"></div>
+      <div className="card-container">
+        {cards.map((card, index) => (
+          <div key={index} className="card" onClick={() => navigate(card.path)}>
+            <div className="icon">{card.icon}</div>
+            <div className="title">{card.title}</div>
           </div>
-          <div className="bottom-section">
-            <span className="title" >List Internship </span>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="top-section" onClick={() => navigate("/job-list")}>
-            <div className="border"></div>
-          </div>
-          <div className="bottom-section">
-            <span className="title">List Job </span>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="top-section">
-            <div className="border"></div>
-          </div>
-          <div className="bottom-section">
-            <span className="title">Application Name for internship </span>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="top-section">
-            <div className="border"></div>
-          </div>
-          <div className="bottom-section">
-            <span className="title">Application Name For Job</span>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );

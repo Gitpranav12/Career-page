@@ -28,23 +28,9 @@ const LoginPage = () => {
   return (
     <div>
       
-      <Navbar />
+     
 
-      <button
-    style={topRightButtonStyle}
-    
-    onMouseOver={(e) => {
-      e.target.style.backgroundColor = "#ff5800";
-      e.target.style.color = "white";
-    }}
-    onMouseOut={(e) => {
-      e.target.style.backgroundColor = "white";
-      e.target.style.color = "#ff5800";
-      e.target.style.border = "2px solid #ff5800"; // Optional border effect
-    }}
-  >
-    Login 
-  </button>
+
       <div style={{ display: "flex", height: "100vh" }}>
         {/* Left Branding Section */}
         <div style={{ flex: 1, backgroundColor: "#2d2d2d", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -112,17 +98,5 @@ const submitButtonStyle = {
   cursor: "pointer",
 };
 
-const topRightButtonStyle = {
-  position: "absolute",
-  top: "30px",
-  right: "20px",
-  padding: "15px 23px",
-  backgroundColor: "#ff5800",
-  color: "white",
-  border: "none",
-  borderRadius: "30px",
-  fontWeight: "bold",
-  cursor: "pointer",
-};
 
 export default LoginPage;

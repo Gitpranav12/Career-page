@@ -6,9 +6,10 @@ import AddJob from "./Admin/AddJob";
 import AddInternship from "./Admin/AddInternship";
 import ManageApplicationInternship from "./Admin/ManageApplicationInternship";
 import ManageCard from "./Admin/ManageCard";
-// import Navbar from "./Components/Navbar";
 import Footer from "./Pages/Footer";
-// import Home from "./Pages/Home";
+import Home from "./Pages/Home";
+import JobListShow from "./Frontend/Job/jobListShow";  // Fixed import name
+import InternshipList from "./Frontend/Internship/InternshipList";
 
 // Simulated authentication (replace with actual login logic)
 const isAuthenticated = () => {
@@ -20,11 +21,10 @@ const ProtectedRoute = ({ element }) => {
   return isAuthenticated() ? element : <Navigate to="/" />;
 };
 
-// Layout for Admin Pages (Navbar & Footer)
+// Layout for Admin Pages (Footer included)
 const AdminLayout = ({ children }) => {
   return (
     <>
-     
       {children}
       <Footer />
     </>
@@ -34,9 +34,12 @@ const AdminLayout = ({ children }) => {
 function App() {
   return (
     <Router>
+     
       <Routes>
-        {/* Login Route */}
-        <Route path="/" element={<LoginPage />} />
+        {/* Public Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<JobListShow />} /> {/* Fixed component name */}
+        <Route path="/internships" element={<InternshipList />} />
 
         {/* Admin Routes (Protected) */}
         <Route
@@ -59,6 +62,7 @@ function App() {
           path="/managecard"
           element={<ProtectedRoute element={<AdminLayout><ManageCard /></AdminLayout>} />}
         />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );

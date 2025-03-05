@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion";
-//import searchImage from "./search.jpg";
-//import intership from "./intership.jpg";
-//import job from "./job.jpg";
 import Navbar from "../Components/Navbar";
+import WhatOffer from "../Components/WhatOffer";
+import Testimonials from "./Testimonials";
+import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
-export default function Home() {
+export default function Home()
+ {
   const [keywords, setKeywords] = useState("");
-
+  const navigate = useNavigate(); 
   const styles = {
     pageContainer: {
       backgroundImage: `url('/search.jpg')`,
@@ -25,7 +27,7 @@ export default function Home() {
     },
     overlay: {
       position: "absolute",
-      bottom: "20px", 
+      bottom: "20px",
       left: "50%",
       transform: "translateX(-50%)",
       width: "100%",
@@ -43,7 +45,7 @@ export default function Home() {
       whiteSpace: "pre-line",
     },
     highlightedText: {
-      color: "",
+      color: "#FFA500",
     },
     searchContainer: {
       display: "flex",
@@ -65,11 +67,6 @@ export default function Home() {
       border: "none",
       outline: "none",
       fontSize: "16px",
-    },
-    searchIcon: {
-      color: "gray",
-      fontSize: "20px",
-      marginRight: "10px",
     },
     searchButton: {
       backgroundColor: "orange",
@@ -114,7 +111,7 @@ export default function Home() {
       fontSize: "18px",
       textAlign: "justify",
       marginBottom: "15px",
-      fontFamily: "font-family:custom40db243dbb0f4ab6bfcbd;",
+      fontFamily: "'Poppins', sans-serif",
     },
     button: {
       padding: "10px 20px",
@@ -157,33 +154,37 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
+
       {/* Internship & Job Sections */}
       <div style={styles.sectionContainer}>
         <div style={styles.section}>
-        <img src="/intership.jpg" alt="Internship" style={styles.sectionImage} />
-        
+          <img src="/intership.jpg" alt="Internship" style={styles.sectionImage} />
           <h3 style={styles.sectionTitle}>Internship Opportunities</h3>
           <p style={styles.sectionText}>
-            Gain industry experience and boost your skills with various internships. 
+            Gain industry experience and boost your skills with various internships.
             Work on real-world projects, collaborate with industry experts, and expand your professional network.
-            Our internship programs provide hands-on experience and learning opportunities in diverse fields, 
+            Our internship programs provide hands-on experience and learning opportunities in diverse fields,
             preparing you for a successful career.
           </p>
-          <button style={styles.button}>Explore Internships</button>
+          <button onClick={() => navigate("/internships")} style={styles.button}>Explore Internships</button>
         </div>
         <div style={styles.section}>
-        <img src="/job.jpg" alt="Job" style={styles.sectionImage} />
+          <img src="/job.jpg" alt="Job" style={styles.sectionImage} />
           <h3 style={styles.sectionTitle}>Job Openings</h3>
           <p style={styles.sectionText}>
-            Find full-time job opportunities at our company. 
+            Find full-time job opportunities at our company.
             Start your career with positions that match your expertise and interests.
-            Our job openings offer competitive salaries, growth opportunities, and a chance to work withm our companies.
+            Our job openings offer competitive salaries, growth opportunities, and a chance to work within our companies.
             Whether you're a fresher or an experienced professional, explore roles that align with your career goals.
           </p>
-          <button style={styles.button}>Explore Jobs</button>
+          <button onClick={() => navigate("/jobs")} style={styles.button}>Explore Jobs</button>
         </div>
       </div>
+
+      {/* WhatOffer, Testimonials, and Footer Sections */}
+      <WhatOffer />
+      <Testimonials />
+      <Footer />
     </div>
   );
 }

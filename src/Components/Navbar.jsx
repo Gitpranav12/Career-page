@@ -1,78 +1,95 @@
 import { useState } from "react";
-import { Link,useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "./logooo.png"; 
-
+import logo from "./logooo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation(); // ✅ Get the current route
 
-
   return (
     <>
       <style jsx>{`
         .navbar {
-          background-color: white; 
-          color: white;
+          background-color: white;
           padding: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
         }
 
         .container {
           max-width: 1200px;
+          width: 100%;
           margin: 0 auto;
           display: flex;
-          // justify-content: space-between;
           align-items: center;
-         padding-left: 4rem;
+          padding-left: 4rem;
         }
 
         .logo img {
-          height: 77px; /* ✅ Reduced logo size */
+          height: 77px;
           width: auto;
           display: block;
         }
-        
 
         .menu-button {
           display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
         }
 
         .menu-list {
           display: flex;
-          gap: 0.5 rem;
+          gap: 0.5rem;
           flex-direction: row;
           list-style: none;
           padding: 0;
           margin: 0;
-        }
-
-        .menu-list li {
-          padding: 0.5rem 1rem;
+          flex-grow: 1;
         }
 
         .menu-list li a {
           color: black;
           text-decoration: none;
           padding: 0.5rem 1rem;
-          // border-radius: 0.375rem;
         }
 
-       .menu-list li a:hover {
-         color: orange; /* Change text color on hover */
-         border-bottom: 2px solid orange; /* Add an orange underline */
-         text-decoration: none;
+        .menu-list li a:hover {
+          color: orange;
+          border-bottom: 2px solid orange;
+          text-decoration: none;
         }
 
-        /* Mobile */
+        .login-button {
+          margin-left: auto;
+          padding: 12px 20px;
+          background-color: #ff5800;
+          color: white;
+          border: none;
+          border-radius: 30px;
+          font-weight: bold;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        .login-button:hover {
+          background-color: white;
+          color: #ff5800;
+          border: 2px solid #ff5800;
+        }
+
+        /* Mobile Styles */
         @media (max-width: 768px) {
           .menu-button {
-          
             display: block;
           }
 
           .menu-list {
-            display: ${isOpen ? "block" : "none"};
+            display: none;
             position: absolute;
             top: 4rem;
             left: 0;
@@ -80,8 +97,11 @@ const Navbar = () => {
             background-color: #3182ce;
             flex-direction: column;
             padding: 1rem;
-
             gap: 1rem;
+          }
+
+          .menu-list.open {
+            display: block;
           }
         }
       `}</style>
@@ -89,56 +109,50 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="container">
           <Link to="/" className="logo">
-          <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" />
           </Link>
 
           <button className="menu-button" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          <ul className={`menu-list`}>
+          <ul className={`menu-list ${isOpen ? "open" : ""}`}>
             <li>
-              <Link to="https://www.kavaavi.com/index.html#" className=" py-2 px-4 hover:bg-blue-500 ">
+              <a href="https://www.kavaavi.com/index.html#" className="py-2 px-4 hover:bg-blue-500">
                 Home
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="https://www.kavaavi.com/html/about.html" className="block py-2 px-4 hover:bg-blue-500 rounded-md">
-                About 
-              </Link>
+              <a href="https://www.kavaavi.com/html/about.html" className="py-2 px-4 hover:bg-blue-500 rounded-md">
+                About
+              </a>
             </li>
             <li>
-              <Link to="https://www.kavaavi.com/html/services.html" className="block py-2 px-4 hover:bg-blue-500 rounded-md">
+              <a href="https://www.kavaavi.com/html/services.html" className="py-2 px-4 hover:bg-blue-500 rounded-md">
                 Services
-              </Link>
+              </a>
             </li>
-
             <li>
-              <Link to="https://blog.kavaavi.com/blog/" className="block py-2 px-4 hover:bg-blue-500 rounded-md">
-                blog
-              </Link>
+              <a href="https://blog.kavaavi.com/blog/" className="py-2 px-4 hover:bg-blue-500 rounded-md">
+                Blog
+              </a>
             </li>
-
             <li>
-              <Link to="https://www.kavaavi.com/html/test.html" className="block py-2 px-4 hover:bg-blue-500 rounded-md">
+              <a href="https://www.kavaavi.com/html/test.html" className="py-2 px-4 hover:bg-blue-500 rounded-md">
                 Contact
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/career" className="block py-2 px-4 hover:bg-blue-500 rounded-md">
+              <Link to="/career" className="py-2 px-4 hover:bg-blue-500 rounded-md">
                 Career
               </Link>
             </li>
-
-            {/* ✅ Conditionally Show "Login as Admin" Only on /career Page */}
-            {location.pathname === "/career" && (
-              <li>
-                <Link to="/admin-login" style={{ color: "red", fontWeight: "bold" }}>
-                  Login as Admin
-                </Link>
-              </li>
-            )}
           </ul>
+
+          {/* ✅ Login Button Redirects to /login */}
+          <Link to="/login" className="login-button">
+            Login
+          </Link>
         </div>
       </nav>
     </>

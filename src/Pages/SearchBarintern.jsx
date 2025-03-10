@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa"; 
+import background3 from '../Pages/background3.jpg'; 
 
 const SearchBarintern = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,12 +39,17 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    background: "url('back.jpg') no-repeat center center/cover",
+    background: `url(${background3}) no-repeat center center/cover`,
+    backgroundposition: "center",
+    backgroundrepeat: "no-repeat",
+    backgroundsize:" cover",
+    backgroundColor:"balck"
+    
   },
   heading: {
-    fontSize: "44px",
+    fontSize: "4rem",
     marginBottom: "15px",
-    color: "#333",
+    color: "#ffff",
     fontWeight: "600",
   },
   searchContainer: {

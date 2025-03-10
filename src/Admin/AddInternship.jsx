@@ -165,6 +165,7 @@ const styles = {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     maxWidth: "500px",
     width: "90%",
+    margin:"10px auto",
   },
   heading: {
     textAlign: "center",

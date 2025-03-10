@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { motion } from "framer-motion";
 import Navbar from "../Components/Navbar";
 import WhatOffer from "../Components/WhatOffer";
 import Testimonials from "./Testimonials";
@@ -132,27 +130,6 @@ export default function Home()
           {"Elevate Your Career, Empower Your Future\nwith "}
           <span style={styles.highlightedText}>Cluster Computing!</span>
         </h2>
-        <div style={styles.overlay}>
-          <div style={styles.searchContainer}>
-            <div style={styles.inputContainer}>
-              <input
-                type="text"
-                placeholder="Search for Jobs or Internships"
-                value={keywords}
-                onChange={(e) => setKeywords(e.target.value)}
-                style={styles.input}
-              />
-              <motion.button
-                style={styles.searchButton}
-                onClick={() => console.log("Search clicked")}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <FaSearch /> Search
-              </motion.button>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Internship & Job Sections */}

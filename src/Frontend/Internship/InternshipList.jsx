@@ -30,7 +30,7 @@ const InternshipList = () => {
         params: { skills: searchValue }, 
       })
       .then((response) => {
-        setInternshipList(response.data);
+        setInternshipList(response.data);   
       })
       .catch((error) => {
         console.error("Error searching internships:", error);

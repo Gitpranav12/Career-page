@@ -37,7 +37,7 @@ const InternshipDetailsAdmin = () => {
       <div className="internship-info"><strong>Posted Date:</strong> {internship.posted_Date}</div>
       <div className="internship-info"><strong>Application Deadline:</strong> {internship.application_Deadline}</div>
       <div className="button-container">
-      <button className="apply-button" onClick={() => navigate("/intershiplistadmin")}> 
+      <button className="apply-button" onClick={() => navigate("/internshipListAdmin")}> 
         Close
     </button>
 

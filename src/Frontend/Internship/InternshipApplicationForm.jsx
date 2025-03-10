@@ -41,6 +41,14 @@ const InternshipApplicationForm = () => {
       [name]: type === 'file' ? files[0] : value,
     });
   };
+
+  const handleRemoveResume = () => {
+    setFormData({ ...formData, resume: null });
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -154,7 +162,13 @@ const InternshipApplicationForm = () => {
 
         <div className="form-group">
           <label htmlFor="resume">Upload Resume</label>
-          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"   ref={fileInputRef} onChange={handleChange} required />
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" ref={fileInputRef} onChange={handleChange} required />
+          {formData.resume && (
+  <div className="resume-preview">
+    <span>{formData.resume.name}</span>
+    <button type="button" className="delete-btn" onClick={handleRemoveResume}>❌</button>
+  </div>
+)}
         </div>
 
         <div className="form-group">
@@ -219,9 +233,24 @@ const InternshipApplicationForm = () => {
           width: 100%;
         }
 
-        button:hover {
-          background-color: #e87001;
-        }
+
+ .resume-preview {
+  display: flex;
+  align-items: center; /* Align text and button in one row */
+  gap: 10px; /* Add spacing between resume name and delete button */
+  font-size: 1rem;
+  color: #333;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: red; /* Set text color to red */
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+}
+
       `}</style>
     
     </div>

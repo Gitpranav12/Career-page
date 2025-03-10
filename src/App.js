@@ -10,7 +10,16 @@ import Footer from "./Pages/Footer";
 import Home from "./Pages/Home";
 import JobListShow from "./Frontend/Job/jobListShow";  // Fixed import name
 import InternshipList from "./Frontend/Internship/InternshipList";
-
+import InternshipListAdmin from "./Admin/InternshipListAdmin";
+import JobListAdmin from "./Admin/JobListAdmin";
+import InternshipDetailsAdmin from "./Admin/InternshipDetailsAdmin";
+import JobDetailsAdmin from "./Admin/JobDetailsAdmin"; 
+import ShowInternshipApplicant from "./Admin/ShowInternshipApplicant";
+import ShowJobApplicant from "./Admin/ShowJobApplicant";
+import JobDetails from './Frontend/Job/JobDetails';
+import JobApplicationForm from './Frontend/Job/JobApplicationForm';
+import InternshipDetails from './Frontend/Internship/InternshipDetails';
+import InternshipApplicationForm from './Frontend/Internship/InternshipApplicationForm';
 // Simulated authentication (replace with actual login logic)
 const isAuthenticated = () => {
   return localStorage.getItem("isAdmin") === "true"; // Check if admin is logged in
@@ -39,8 +48,14 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<JobListShow />} /> {/* Fixed component name */}
-        <Route path="/internships" element={<InternshipList />} />
+        <Route path="/jobDetails/:id" element={<JobDetails />} />
+          <Route path="/JobApplicationForm/:id" element={<JobApplicationForm />} />
+   
 
+        <Route path="/internships" element={<InternshipList />} />
+        <Route path="/InternshipDetails/:id" element={<InternshipDetails />} />
+          <Route path="/InternshipApplicationForm/:id" element={<InternshipApplicationForm />} />
+        
         {/* Admin Routes (Protected) */}
         <Route
           path="/dashboard"
@@ -63,6 +78,14 @@ function App() {
           element={<ProtectedRoute element={<AdminLayout><ManageCard /></AdminLayout>} />}
         />
         <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/JobListAdmin" element={<JobListAdmin />} />
+        <Route path="/jobDetailsAdmin/:id" element={<JobDetailsAdmin />} />
+        <Route path="/InternshipDetailsAdmin/:id" element={<InternshipDetailsAdmin/>} />
+        <Route path="/internshiplistadmin" element={<InternshipListAdmin />} />
+        <Route path="/ShowInternshipApplicant" element={<ShowInternshipApplicant />} />
+        <Route path="/ShowJobApplicant" element={<ShowJobApplicant />} />
+
       </Routes>
     </Router>
   );

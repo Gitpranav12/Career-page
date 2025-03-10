@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
 const JobListAdmin = () => {
   const [jobList, setJobList] = useState([]);
 
   // Fetch data from the backend when the component mounts
   useEffect(() => {
-    axios.get(` http://localhost:8082/api/getJobfield`)
+    axios.get(`http://localhost:8082/api/getJobfield`)
       .then(response => {
         setJobList(response.data); // Store fetched job data
       })
@@ -16,75 +15,59 @@ const JobListAdmin = () => {
         console.error("Error fetching jobs:", error);
       });
   }, []);
- 
 
-// Function to delete a job
+  // Function to delete a job
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      axios
+        .delete(`http://localhost:8082/api/delete-job/${id}`)
+        .then((response) => {
+          alert(response.data); // Show success message
+          setJobList(jobList.filter(job => job[0] !== id)); // Remove the deleted job from the list
+        })
+        .catch((error) => {
+          console.error("Error deleting job:", error);
+          alert("Error deleting job. Please try again.");
+        });
+    }
+  };
 
-const handleDelete = (id) => {
-  if (window.confirm("Are you sure you want to delete this job?")) {
-    axios
-      .delete(`http://localhost:8082/api/delete-job/${id}`)
-      .then((response) => {
-        alert(response.data); // Show success message
-        try {
-          JobListAdmin(); // Refresh job list after deletion
-        } catch (err) {
-          console.error("Error refreshing job list:", err);
-          alert("Error refreshing job list.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting job:", error);
-        alert("Error deleting job. Please try again.");
-      });
-  }
-};
-
-
-
-  //const handleViewClick = (job) => {
-    //setSelectedJob(job); // Set selected job details when clicking View
-  //};
   return (
     <div className="job-list-container">
-      <h1>Job Listings</h1>
+      <h1>List of Jobs</h1>
       <table className="job-table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>AllicationDeadline</th>
+            <th>Application Deadline</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {jobList.length === 0 ? (
             <tr>
-              <td colSpan="3" className="no-jobs-message">No jobs available</td>
+              <td colSpan="4" className="no-jobs-message">No jobs available</td>
             </tr>
           ) : (
-            jobList.map((job, index) => {
-
-              
-              console.log("Job ID:", job.job_id); // Add this log to check if Job_id is valid
-  return (
-    <tr key={index}>
-      <td>{job[0]}</td>
-      <td>{job[1]}</td>
-      <td>{job[2]}</td>
-      <td>
-    <Link to={`/jobDetailsAdmin/${job[0]}`}>
-  <button className="view-button">View</button><br></br><br></br>
-</Link>
-<button className="view-button" onClick={() => handleDelete(job[0])}>Delete</button>           
-                 
+            jobList.map((job, index) => (
+              <tr key={index}>
+                <td>{job[0]}</td>
+                <td>{job[1]}</td>
+                <td>{job[2]}</td>
+                <td>
+                  <div className="action-buttons">
+                    <Link to={`/jobDetailsAdmin/${job[0]}`}>
+                      <button className="view-button">View</button>
+                    </Link>
+                    <button className="delete-button" onClick={() => handleDelete(job[0])}>Delete</button>
+                  </div>
                 </td>
-              </tr>)})
+              </tr>
+            ))
           )}
         </tbody>
       </table>
-
-     
 
       {/* Internal CSS */}
       <style>{`
@@ -115,7 +98,12 @@ const handleDelete = (id) => {
           background-color: #f9f9f9;
         }
 
-        .view-button {
+        .action-buttons {
+          display: flex;
+          gap: 10px;
+        }
+
+        .view-button, .delete-button {
           background-color: #ff7f00;
           color: white;
           padding: 8px 16px;
@@ -125,8 +113,16 @@ const handleDelete = (id) => {
           transition: background-color 0.3s;
         }
 
+        .delete-button {
+          background-color: #ff4d4d;
+        }
+
         .view-button:hover {
-          background-color: #ff7f00;
+          background-color: #e67800;
+        }
+
+        .delete-button:hover {
+          background-color: #e60000;
         }
 
         .no-jobs-message {

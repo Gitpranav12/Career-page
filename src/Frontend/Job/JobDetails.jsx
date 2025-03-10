@@ -48,7 +48,6 @@ const JobDetails = () => {
 
       </div>
 
-     
       <style>{`
         .job-details-container {
           max-width: 600px;
@@ -102,7 +101,7 @@ const JobDetails = () => {
           text-align: center;
           transition: background-color 0.3s ease;
         }
-
+          
         .apply-button:hover {
           background-color: darkorange;
         }

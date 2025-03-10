@@ -7,10 +7,10 @@ const ManageCard = () => {
   const navigate = useNavigate();
 
   const cards = [
-    { title: "List Internship", path: "/internshiplist", icon: <FaGraduationCap /> },
-    { title: "List Job", path: "/job-list", icon: <FaBriefcase /> },
-    { title: "Internship Applications", path: "/application-internship", icon: <FaClipboardList /> },
-    { title: "Job Applications", path: "/application-job", icon: <FaFileAlt /> }
+    { title: "List Internship", path: "/internshipListAdmin", icon: <FaGraduationCap /> },
+    { title: "List Job", path: "/JobListAdmin", icon: <FaBriefcase /> },
+    { title: "Internship Applications", path: "/ShowInternshipApplicant", icon: <FaClipboardList /> },
+    { title: "Job Applications", path: "/ShowJobApplicant", icon: <FaFileAlt /> }
   ];
 
   return (

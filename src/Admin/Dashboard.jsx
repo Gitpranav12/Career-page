@@ -26,10 +26,16 @@ const Dashboard = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: "100vh",
-      margin: 0,
+      flexDirection: "column", // Adjust for mobile by default
+      margin: "50px auto" ,
       gap: "20px",
-      flexWrap: "wrap",
+    },
+    cardContainer: {
+      display: "flex",
+      flexWrap: "wrap", // Allow wrapping of cards
+      justifyContent: "center",
+      gap: "20px",
+     overflow:"hidden",
     },
     card: {
       width: "300px",
@@ -77,8 +83,43 @@ const Dashboard = () => {
     buttonHover: {
       backgroundColor: "#e04e00",
     },
+    // Media queries for responsiveness
+    '@media (max-width: 768px)': {
+      body: {
+        flexDirection: "column",
+        justifyContent: "flex-start", // Stack items on mobile
+      },
+      cardContainer: {
+        justifyContent: "center",
+        gap: "15px",
+      },
+      card: {
+        width: "100%", // Make cards full width on smaller screens
+        marginBottom: "20px",
+      },
+      button: {
+        padding: "12px 24px", // Make the button bigger on mobile
+      },
+    },
+    
+    '@media (max-width: 480px)': {
+      card: {
+        width: "100%", // Full width for very small screens
+        padding: "0.8rem", // Smaller padding on mobile
+      },
+      title: {
+        fontSize: "16px", // Smaller title font size
+      },
+      text: {
+        fontSize: "12px", // Smaller text size
+      },
+      button: {
+        width: "100%", // Make button take full width on small screens
+        padding: "12px", // Increase padding for better touchability
+      },
+    },
   };
-
+  
   const cards = [
     {
       img: "/addjob.jpg",
@@ -102,40 +143,42 @@ const Dashboard = () => {
       onClick: () => navigate("/managecard"),
     },
   ];
-
+  
   return (
     <>
-      {/* Navbar is now inside the return statement */}
       <AdminNavbar />
       <div style={styles.body}>
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            style={{
-              ...styles.card,
-              ...(hoverIndex === index ? styles.cardHover : {}),
-            }}
-            onMouseEnter={() => setHoverIndex(index)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            <img src={card.img} alt={card.title} style={styles.img} />
-            <div style={styles.cardContent}>
-              <h3 style={styles.title}>{card.title}</h3>
-              <p style={styles.text}>{card.text}</p>
-              <button
-                style={styles.button}
-                onClick={card.onClick}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = styles.button.backgroundColor)}
-              >
-                {card.buttonText}
-              </button>
+        <div style={styles.cardContainer}>
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              style={{
+                ...styles.card,
+                ...(hoverIndex === index ? styles.cardHover : {}),
+              }}
+              onMouseEnter={() => setHoverIndex(index)}
+              onMouseLeave={() => setHoverIndex(null)}
+            >
+              <img src={card.img} alt={card.title} style={styles.img} />
+              <div style={styles.cardContent}>
+                <h3 style={styles.title}>{card.title}</h3>
+                <p style={styles.text}>{card.text}</p>
+                <button
+                  style={styles.button}
+                  onClick={card.onClick}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.buttonHover.backgroundColor)}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = styles.button.backgroundColor)}
+                >
+                  {card.buttonText}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );
+  
 };
 
 export default Dashboard;
